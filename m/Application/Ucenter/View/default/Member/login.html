@@ -1,0 +1,41 @@
+<extend name="Base/common"/>
+<block name="css">
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="__CSS__/login.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_d7wp8psve5pl23xr.css">
+</block>
+<block name="body">
+    <div class="loginWrap">
+        <div class="login_list">
+            <form method="post" data-role="form" data-url="{:U('Ucenter/Member/login')}">
+                <div class="loginInput">
+                    <i class="iconfont icon-shouji"></i>
+                    <input placeholder="请输入手机号或邮箱" type="text" name="username" id="text" value="">
+                </div>
+                <div class="loginInput">
+                    <i class="iconfont icon-mima"></i>
+                    <input placeholder="请输入密码" type="password" name="password" id="password">
+                    <i class="iconfont icon-caozuo_yanjing" data-role="visible"></i>
+                </div>
+                <div class="btnWrap">
+                    <div class="forgot_btn">
+                        <a href="{:U('register')}" class="register">注册帐号</a>
+                        <a href="{:U('resetPassword')}" class="forgot">忘记密码？</a>
+                    </div>
+                    <a href="#" data-role="login" class="comBtn">登录<i class="iconfont icon-arrow-right"></i></a>
+                </div>
+            </form>
+        </div>
+        <if condition="$can_wechat_login eq true">
+            <div class="otherLogin">
+                <div class="loginText">或者，您可以</div>
+                <div class="oneType"><a href="{:U('Ucenter/Member/weChatLogin')}"><i class="iconfont icon-weixin iwx" style="color: #00bc0c"></i></a></div>
+            </div>
+        </if>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/login.js"></script>
+    <script src="__JS__/password.js"></script>
+    <script src="__PUBLIC_JS__/placeholder.js"></script>
+</block>

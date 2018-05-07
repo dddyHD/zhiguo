@@ -1,0 +1,42 @@
+--
+-- 表的结构 `ocenter_mall_spec`
+--
+
+CREATE TABLE IF NOT EXISTS `ocenter_mall_spec` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL COMMENT '规格名称',
+  `values` varchar(256) NOT NULL COMMENT '规格参数',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `status` tinyint(4) NOT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='规格表' AUTO_INCREMENT=5 ;
+
+--
+-- 转存表中的数据 `ocenter_mall_spec`
+--
+
+INSERT INTO `ocenter_mall_spec` (`id`, `name`, `values`, `create_time`, `status`) VALUES
+(1, '颜色', '', 1483942617, 1);
+
+--
+-- 表的结构 `ocenter_mall_spec_value`
+--
+
+CREATE TABLE IF NOT EXISTS `ocenter_mall_spec_value` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `spec_id` int(11) NOT NULL COMMENT '规格id',
+  `name` varchar(128) NOT NULL COMMENT '规格详情名',
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `spec_id` (`spec_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='规格详情表' AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `ocenter_mall_spec_value`
+--
+
+INSERT INTO `ocenter_mall_spec_value` (`id`, `spec_id`, `name`, `create_time`) VALUES
+(1, 1, '红色', 1483942617),
+(2, 1, '黑色', 1483942617);
+
+

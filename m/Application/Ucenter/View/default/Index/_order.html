@@ -1,0 +1,32 @@
+<volist name="order" id="val">
+    <li class="judge" style="display: block">
+        <a href="{:U('Order/Index/ordergoods',array('id'=>$val['id']))}">
+            <div class="orderList">
+                <div class="ico">
+                    <div class="border">
+                        <i class="iconfont icon-order"></i>
+                    </div>
+                </div>
+                <div class="order_message">
+                   <div class="column">
+                       <if condition="$val.count eq 1">
+                           <span class="font_title" style="width: 75%">{$val.goods_name}</span>
+                           <else/>
+                           <span class="font_title" style="width: 75%">{$val.goods_name}等{$val.count}件物品</span>
+                       </if>
+                       <span class="font_title" style="width: 25%;text-align: right">-{$val.amount}</span>
+                   </div>
+                    <div class="column" style="margin-top: 14px">
+                        <span>{$val.friend_time}</span>
+                        <if condition="$val.is_pay eq 1">
+                            <span>{$val.status_name}</span>
+                            <else />
+                            <span style="color: #ec725d">{$val.status_name}</span>
+                        </if>
+
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+</volist>

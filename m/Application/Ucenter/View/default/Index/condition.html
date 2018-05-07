@@ -1,0 +1,58 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/identify.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current condition">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">个人认证</a>
+            </header>
+            <div class="content">
+                <div class="content-block noEdge noShadow">
+                    <div class="exp">
+                        <p class="idTit">个人认证</p>
+                        <p>真实身份，易于被辨识<br>更加权威，提高可信度</p>
+                    </div>
+                    <ul class="cdn">
+                        <li><p class="idTit">申请条件</p></li>
+                        <li class="flexDiv oneTp">
+                            <div class="flexLeft">
+                                <i class="iconfont icon-iconfontwohover"></i>
+                                <div class="rightDiv">高清头像</div>
+                            </div>
+                            <div class="flexRight"><a><i class="iconfont icon-iconfontduigou"></i>已符合</a></div>
+                        </li>
+                        <li class="flexDiv oneTp">
+                            <div class="flexLeft">
+                                <div class="pic"><img src="__IMG__/phone.png" alt=""></div>
+                                <div class="rightDiv">绑定手机号</div>
+                            </div>
+                            <div class="flexRight"><a href="" class="not"><i class="iconfont icon-iconfontcha"></i>去完成</a></div>
+                        </li>
+                        <li class="flexDiv oneTp">
+                            <div class="flexLeft">
+                                <i class="iconfont icon-iconfontwohover"></i>
+                                <div class="rightDiv">高清头像</div>
+                            </div>
+                            <div class="flexRight"><a><i class="iconfont icon-iconfontduigou"></i>已符合</a></div>
+                        </li>
+                        <li class="flexDiv oneTp">
+                            <div class="flexLeft">
+                                <i class="iconfont icon-iconfontwohover"></i>
+                                <div class="rightDiv">高清头像</div>
+                            </div>
+                            <div class="flexRight"><a><i class="iconfont icon-iconfontduigou"></i>已符合</a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--如果上述条件全部满足，则显示申请按钮-->
+            <div class="complete" data-role="complete">
+                <a href="javascript:" class="cBtn">立即申请</a>
+            </div>
+        </div>
+    </div>
+</block>

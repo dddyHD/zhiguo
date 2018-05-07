@@ -1,0 +1,105 @@
+.active {
+  color: #EC725D !important;
+}
+.flexBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin: 5px 0;
+}
+.flexBox .box1 i {
+  color: #888888;
+}
+.flexBox .box2 .seek {
+  border: none;
+  padding-right: 5px;
+}
+.bought_part {
+  padding: 10px;
+}
+.bought_part .bought_flow {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 5px;
+  justify-content: center;
+  width: 33.333%;
+}
+.bought_part .bought_flow .goods_img {
+  width: 80px;
+  height: 100px;
+}
+.bought_part .bought_flow p {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9em;
+}
+.bought_part .empty {
+  width: 100%;
+  margin-top: 70px;
+  margin-bottom: 190px;
+}
+.bought_part .empty .empty-img {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+.bought_part .empty .empty-img img {
+  width: 150px;
+  height: 150px;
+}
+.bought_part .empty p {
+  font-size: 16px;
+  text-align: center;
+  padding: 45px 0px;
+}
+.bought_part .unlogin {
+  width: 100%;
+  margin-top: 70px;
+  margin-bottom: 190px;
+}
+.bought_part .unlogin .unlogin-img {
+  width: 250px;
+  height: 150px;
+  margin: 0 auto;
+}
+.bought_part .unlogin .unlogin-img img {
+  width: 250px;
+  height: 150px;
+}
+.bought_part .unlogin p {
+  font-size: 16px;
+  text-align: center;
+  padding: 45px 0px;
+}
+.bought_part .bought_list {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+.bought_part .bought_list .goods_img {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+.bought_part .bought_list .goods_info {
+  margin-left: 5px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bought_part .bought_list .goods_info .cont {
+  color: #1a1a1a;
+  font-size: 16px;
+  font-weight: bold;
+}
+.bought_part .bought_list .goods_info .goods_time {
+  margin-top: 10px;
+}
+.bought_part .bought_list .goods_info div {
+  margin-top: 5px;
+}
+.bought_part .bought_list .goods_info .goods_speed {
+  margin-top: 5px;
+}

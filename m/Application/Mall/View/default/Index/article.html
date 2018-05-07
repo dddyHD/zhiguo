@@ -1,0 +1,98 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/detail.css"/>
+    <link rel="stylesheet" href="__CSS__/article.css"/>
+    <link rel="stylesheet" href="__CSS__/note.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_363019_cuderoz6wrvn29.css"/>
+</block>
+<block name="body">
+    <div class="note_write" data-role="note">
+        <i class="iconfont icon-bi1"></i>
+    </div>
+    <div class="page-bottom">
+        <a class="pre" data-role="pre">上一页</a>
+        <span class="pag_number"><span class="page_number">{$goods.page}</span>/<span class="page_num">{$goods[length]}</span></span>
+        <a class="next" data-role="next">下一页</a>
+    </div>
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">{$good.name}</a>
+            </header>
+            <div class="content">
+                <div class="dIntro dPre">
+                    <div class="essay">{$goods[0]}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <block name="other">
+        <div class="popup popup-about write_note" style="bottom: 40px">
+            <div class="content-block" style="margin: 0.75rem 0">
+                <textarea placeholder="阅读笔记......"  class="notes" rows="3" ></textarea>
+                <div class="commentOp">
+                    <a href="javascript:" data-role="write_notes" data-id="{$good.id}" class="proBtn close-popup">保存</a>
+                </div>
+            </div>
+        </div>
+    </block>
+</block>
+<block name="script">
+    <script src="__PUBLIC_JS__/public.js"></script>
+    <script>
+        $("[data-role='note']").click(function () {
+            $.popup('.write_note');
+        });
+    </script>
+    <script src="__JS__/article.js"></script>
+    <script src="__JS__/note.js"></script>
+    <script type="text/javascript" src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+    <script type="text/javascript">
+        wx.config({
+            debug: false,
+            appId: '{$signPackage["appId"]}',
+            timestamp: '{$signPackage["timestamp"]}',
+            nonceStr: '{$signPackage["nonceStr"]}',
+            signature: '{$signPackage["signature"]}',
+            jsApiList: [
+                // 所有要调用的 API 都要加到这个列表中
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareQZone'
+            ]
+        });
+    </script>
+    <script type="text/javascript src='http://203.195.235.76/jssdk/js/zepto.min.js"></script>
+    <script type="text/javascript">
+        //完成wx.config，执行这里
+        wx.ready(function () {
+            //分享到朋友圈
+            wx.onMenuShareTimeline({
+                title: '{$good.name}', // 分享标题
+                link:window.location.href,
+                imgUrl: "{$share_img}", // 分享图标
+            });
+
+            //分享给朋友
+            wx.onMenuShareAppMessage({
+                title: '{$good.name}', // 分享标题
+                desc: '{$goods[0]|strip_tags}',
+                link:window.location.href,
+                imgUrl: "{$share_img}", // 分享图标
+                trigger: function (res) {
+                    // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        });
+    </script>
+</block>

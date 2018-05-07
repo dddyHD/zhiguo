@@ -1,0 +1,67 @@
+.pageSearch {
+  background-color: #ffffff;
+}
+.pageSearch .comHead {
+  background-color: #ffffff;
+  border-bottom: 1px solid #f2f2f2!important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pageSearch .comHead a {
+  color: #ec725d !important;
+}
+.pageSearch .comHead .searchbar {
+  background-color: transparent;
+  width: 92%;
+}
+.pageSearch .comHead .searchbar input {
+  background-color: #f2f2f2;
+  padding-left: 1.6rem;
+}
+.hot .hotTop {
+  padding: 10px 10px 0;
+  font-size: 13px;
+  color: #999999;
+}
+.hot .hotTop span i {
+  display: inline-block;
+  margin-right: 5px;
+}
+.hot .hotTop .rotate {
+  transform: rotate(360deg);
+  transition: all 1s ease;
+}
+.hot .hotTag {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+}
+.hot .hotTag span {
+  display: inline-block;
+  margin: 10px 0 0 10px;
+  border: 1px dashed #ddd;
+  border-radius: 5px;
+  padding: 3px 5px;
+  color: #999999;
+}
+.history li {
+  border-top: 1px solid #f2f2f2;
+  height: 30px;
+  padding: 0 10px;
+}
+.history li i {
+  color: #999999;
+}
+.history li .left i {
+  margin-right: 8px;
+}
+.history li .left span {
+  color: #777;
+}
+.history li:last-child {
+  border-bottom: 1px solid #f2f2f2;
+  justify-content: center;
+  height: 40px;
+  color: #999999;
+}

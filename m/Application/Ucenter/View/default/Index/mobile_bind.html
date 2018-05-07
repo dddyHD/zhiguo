@@ -1,0 +1,42 @@
+<extend name="Base/common"/>
+<block name="css">
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="__CSS__/login.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_d7wp8psve5pl23xr.css">
+</block>
+<block name="body">
+    <div class="loginWrap">
+        <div class="formWrap" style="top:0">
+            <div class="content-block">
+                <div class="content-block">
+                    <form method="post" data-role="form" data-url="{:U('checkVerify')}">
+                        <div class="loginInput">
+                            <i class="iconfont icon-shouji"></i> <input placeholder="手机号" type="text" name="account" id="tel" value="">
+                        </div>
+                        <div class="loginInput">
+                            <div class="col-60"><i class="iconfont icon-nicheng"></i><input placeholder="输入验证码" type="text" id="verifyCode" value=""></div>
+                            <div class="col-40"><img class="reloadverify" alt="点击切换" src="{:U('Ucenter/Member/verify')}"></div>
+                        </div>
+                        <div class="loginInput">
+                            <div class="loginInput row verify no-gutter">
+                                <div class="col-60"><i class="iconfont icon-yanzhengma"></i><input placeholder="短信验证码" type="text" name="verify" id="" value=""></div>
+                                <div class="col-40"><a href="#" class="vBtn" data-role="sendVerify">获取验证码</a></div>
+                            </div>
+                        </div>
+
+
+                        <div class="btnWrap">
+                            <a href="#" data-role="bind_mobile" class="comBtn" style="color: #fff">绑定手机<i class="iconfont icon-arrow-right"></i></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+
+</block>
+<block name="script">
+    <script src="__JS__/safe.js"></script>
+</block>

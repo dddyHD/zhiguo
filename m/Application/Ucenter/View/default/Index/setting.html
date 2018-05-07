@@ -1,0 +1,24 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/safe.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">设置</a>
+            </header>
+            <div class="content">
+                <ul class="content-block noEdge">
+                    <li class="setting-item"><a href="{:U('safe')}">账号与安全</a></li>
+                    <li class="setting-item"><a href="{:U('about')}">关于智果</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+
+</block>

@@ -1,0 +1,211 @@
+<php>if(!$isLoadScript){</php>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/ext/webuploader/webuploader.html5only.js"></script>
+<link href="__PUBLIC__/ext/webuploader/webuploader.css" type="text/css" rel="stylesheet">
+<php>}</php>
+<style>
+    .webuploader-pick{
+        width: 170px;
+        height: 45px;
+    }
+    .webuploader-container{
+
+    }
+</style>
+
+<!--    <div id="web_uploader_wrapper_{$id}" style="padding-bottom: 5px;float: left">{$config['text']}</div>
+    <input class="attach" type="hidden" name="{$id}" value="{$value}"/>
+    <div class="upload-img-box">
+        &lt;!&ndash;<div class="progress progress-striped active">&ndash;&gt;
+        &lt;!&ndash;<div class="progress-bar" role="progressbar" style="width: 0%">&ndash;&gt;
+        &lt;!&ndash;</div>&ndash;&gt;
+        <div class="upload-pre-item popup-gallery clearfix">
+            <volist name="images" id="vo">
+                <neq name="vo" value="">
+                    <div class="each">
+                        <a href="{$vo|get_cover='path'}" title="点击查看大图">
+                            <img src="{$vo|thumb=$width,$height}"></a>
+                        <div class="text-center opacity del_btn width"></div>
+                        <div onclick="image_upload.removeImage($(this),{$vo})" class="text-center del_btn" >删除</div>
+
+                    </div>
+                </neq>
+            </volist>
+        </div>
+    </div>-->
+    <div id="wrapper">
+    <div id="container">
+        <!--头部，相册选择和格式选择-->
+
+        <div id="uploader">
+
+            <input id="photos" class="photos" type="hidden" name="photo_ids" value="{$value}"/>
+            <div class="queueList">
+                <div id="dndArea" class="placeholder">
+                    <div id="filePicker"></div>
+                    <p>或将照片拖到这里，单次可多选</p>
+                </div>
+            </div>
+            <div class="statusBar" style="display:none;">
+                <div class="progress">
+                    <span class="text">0%</span>
+                    <span class="percentage"></span>
+                </div><div class="info"></div>
+                <div class="btns">
+                    <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<!--
+<script>
+    $(function () {
+        var id = "#web_uploader_wrapper_{$id}";
+        var limit = parseInt('{$limit}');
+
+        var uploader_{$id} = WebUploader.create({
+
+            // 选完文件后，是否自动上传。
+            auto: true,
+            // swf文件路径
+            swf: 'Uploader.swf',
+            // 文件接收服务端。
+            server: U('Core/File/uploadPicture'),
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: {'id': id, 'multi': true},
+            fileNumLimit: limit,
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
+        });
+        uploader_{$id}.on( 'fileQueued', function( file ) {
+
+            //     uploader_{$id}.upload();
+    var $li = $( '<div id="' + file.id + '" class="file-item col-xs-12'+file.id+' thumbnail each" style="position:relative;float: left">' +
+                    '<img style="padding-right:10px;width: 170px;height: 170px;margin-bottom: 36px">'+
+            '<input style="background: #ffffff;width: 160px;margin-left: 0px;position: absolute;top: 170px;left: 0px;" value="{$album.title}" type="text" name="title[]" placeholder="请输入标题" >'+
+                    '</div>'),
+            $img = $li.find('img');
+
+
+            // $list为容器jQuery实例
+            $("[name='{$id}']").parent().find('.upload-pre-item').append( $li );
+
+            // 创建缩略图
+            // 如果为非图片文件，可以不用调用此方法。
+            // thumbnailWidth x thumbnailHeight 为 100 x 100
+            uploader_{$id}.makeThumb( file, function( error, src ) {
+                if ( error ) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+                $img.attr( 'src', src );
+            }, 500, 500 );
+
+        });
+//      uploader_{$id}.on('fileQueued', function (file) {
+//            uploader_{$id}.upload();
+//            $("#web_uploader_file_name_{$id}").text('正在上传...');
+//
+//
+//        });
+
+
+/*
+        // 文件上传过程中创建进度条实时显示。
+        uploader_{$id}.on( 'uploadProgress', function( file, percentage ) {
+
+            var $li = $( '#'+file.id ),
+                    $percent = $li.find('.progress .progress-bar');
+
+            if ( !$percent.length ) {
+                $percent = $('<div class="progress progress-striped active opacity del_btn" style="width: 100%">' +
+                        '<div class="progress-bar  text-center del_btn" data-role="progressbar'+file.id+'" style="top:30px" ">'+Math.round(percentage* 100)  + '%' +
+                        '</div>' +
+                        '</div>').appendTo( $li ).find('.progress-bar');
+            }
+            $('[data-role="progressbar'+file.id+'"]').html( Math.round(percentage* 100) + '%' );
+        });*/
+
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+        uploader_{$id}.on('uploadSuccess', function (file, ret) {
+            if (ret.status == 0) {
+                $("#web_uploader_file_name_{$id}").text(ret.info);
+                toast.error(ret.info);
+            } else {
+                var data = ret.data.file;
+                var ids = $("[name='{$id}']").val();
+                ids = ids.split(',');
+                if( ids.indexOf(data.id) == -1){
+                    var rids = upPhotoVal('add',data.id, $("[name='{$id}']").parents('.controls').find('.photo'));
+                    if(rids.length>limit){
+                        toast.error("{:L('_PIC_LIMIT_OVERLOAD_')}");
+                        return;
+                    }
+
+                    //$("[name='{$id}']").parent().find('.upload-pre-item').append(
+                    //          ' <div class="each"><a href="'+ data.path+'" title="'+"{:L('_PIC_CLICK_TO_VIEW_BIGGER_')}"+'"><img src="'+ data.path+'"></a><div class="text-center opacity del_btn" ></div>' +
+                    //  '<div onclick="image_upload.removeImage($(this),'+data.id+')"  class="text-center del_btn">{:L("_DELETE_")}</div></div>'
+                    //  $('[data-role="progressbar"]').html('<div onclick="image_upload.removeImage($(this),'+data.id+')"'+ '删除'+'</div>');
+                    $('#'+file.id+'').append('<div style="position:absolute;top: 0px;left: 124px;background-color: #CCCCCC;opacity: 0.5" >'+ '<a style="color:black;display: block;text-align: center;padding: 5px" href="javascript:void(0);" onclick="image_upload.removeImage($(this),'+data.id+')">'+'取消'+'</a>'+'</div>');
+
+                    //      );
+                    imageUpload.callback();
+
+                }else{
+                    $("[name='{$id}']").parent().find('#'+file.id+'').remove();
+                    toast.error("{:L('_PIC_ALREADY_EXIST_')}");
+                }
+
+            }
+        });
+
+// 文件上传失败，显示上传出错。
+        uploader_{$id}.on( 'uploadError', function( file ) {
+            var $li = $( '#'+file.id ),
+                    $error = $li.find('div.error');
+            // 避免重复创建
+            if ( !$error.length ) {
+                $error = $('<div class="error"></div>').appendTo( $li );
+            }
+
+            $error.text('上传失败');
+        });
+
+
+//        uploader_{$id}.on('uploadFinished', function (file) {
+//            uploader_{$id}.reset();
+//        });
+        /*上传成功*/
+
+        uploader_{$id}.on('uploadFinished', function (file) {
+            uploader_{$id}.reset();
+        });
+
+        uploader_{$id}.on( 'uploadComplete', function( file ) {
+            //  $( '#'+file.id ).find('.progress').remove();
+            //  $("[name='{$id}']").parent().find('.file-item').remove();
+
+        });
+    });
+
+
+    image_upload = {
+        removeImage: function (obj, photoId) {
+            // 移除附件ID数据
+            upPhotoVal('del', photoId,obj.parents('.controls').find('.photo'));
+            obj.parents('.each').remove();
+            imageUpload.removeCallback();
+
+        }
+    }
+
+
+
+
+</script>-->

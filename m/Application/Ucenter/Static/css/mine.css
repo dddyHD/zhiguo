@@ -1,0 +1,36 @@
+.me {
+  background-color: #F5F5F5;
+}
+.me a {
+  width: 100%;
+}
+.me .item-inner {
+  justify-content: flex-start;
+}
+.me .item-inner .item-title .iconfont {
+  font-size: 19px;
+}
+.me .item-inner .item-after {
+  margin-left: 1rem;
+}
+.me .baseBox {
+  margin-top: .5rem;
+}
+.load-more-li {
+  text-align: center;
+}
+.load-more-div {
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}
+.nofriend {
+  font-size: 20px;
+  text-align: center;
+}
+.noweibo {
+  font-size: 20px;
+  line-height: 100px;
+  text-align: center;
+  height: 100px;
+}

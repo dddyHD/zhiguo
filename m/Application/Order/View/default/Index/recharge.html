@@ -1,0 +1,33 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/completion.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">充值订单</a>
+            </header>
+            <div class="content">
+                <div class="card" style="margin: 2rem .5rem;">
+                    <div class="card-header">充值详情</div>
+                    <div class="card-content">
+                        <div class="card-content-inner">
+                            <p>订单编号：{$order.id}</p>
+                            <p>充值数额：￥{$order.amount}</p>
+                            <p>充值方式：{$order.way}</p>
+                            <p>付款详情：{$order.pay}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span>创建时间：{$order.create_time|time_format}</span>
+                        <span>创建人：{$order.nickname}</span>
+                    </div>
+                </div>
+                <a class="sure" href="{:U('deposit',array('id'=>$order[id]))}">确认充值</a>
+            </div>
+        </div>
+    </div>
+</block>

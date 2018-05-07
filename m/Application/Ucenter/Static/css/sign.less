@@ -1,0 +1,62 @@
+@import "../../../../Public/css/core";
+//签到样式
+.signWrap{
+  padding: 45px 0 0;
+  height: 175px;
+  .signIn{
+    width: 58%;
+    background: url("../images/sign.png")no-repeat center;
+    background-size: contain;
+    height: 100px;
+    position: absolute;
+    top:-35%;
+    left: 50%;
+    margin-left: -26%;
+    .signCircle{
+      .osCircle(74px);
+      background-color: #fe9320;
+      position: absolute;
+      left: 50%;
+      text-align: center;
+      line-height: 74px;
+      color: @comColor;
+      margin-left: -42px;
+      top:12px;
+    }
+  }
+  .signTitle{
+    color: #fe9320;
+    font-weight: 600;
+  }
+  .myScore{
+    color: @minorTextColor;
+    margin: .5rem 0!important;
+    position: relative;
+    &:after,&:before{
+      content: "";
+      width: 2rem;
+      border: 1px solid #f2f2f2;
+      height: 0;
+      position: absolute;
+      top:50%;
+    }
+    &:before{
+      left: 21%;
+    }
+    &:after{
+      margin-left: 5px;
+    }
+  }
+  .signNum{
+    text-align: left;
+    padding: .2rem .5rem;
+    color: #666;
+    .iconfont{
+      font-size: 14px;
+      margin-right: 10px;
+    }
+  }
+}
+.modal-button{
+  font-size: .7rem;
+}

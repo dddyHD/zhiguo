@@ -1,0 +1,49 @@
+<extend name="Base/common"/>
+<block name="css">
+    <!--<link rel="stylesheet" href="__CSS__/fans.css"/>-->
+    <link rel="stylesheet" href="__CSS__/notegoods.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a external class="iconfont icon-xiangzuojiantou pull-left button button-link" href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title open-about">{$goods[0].name}的笔记</a>
+            </header>
+            <div class="content pull-to-refresh-content infinite-scroll infinite-scroll-bottom" data-distance="100">
+                <div class="pull-to-refresh-layer">
+                    <div class="preloader"></div>
+                    <div class="pull-to-refresh-arrow"></div>
+                </div>
+                <empty name="note">
+                    <div class="nopeople">加油看书，写感想吧</div>
+                    <else/>
+                    <a href="{:U('Mall/index/detail',array('id'=>$goods[0]['id']))}" >
+                        <div class="flexDiv mall  mallList">
+                            <div class="flexLeft">
+                                <div class="leftDiv mCover">
+                                    <img src="{$goods[0].img}" style="width: 60px;height: 80px" alt="商城封面">
+                                </div>
+                                <div class="rightDiv mInfo">
+                                    <p class="mName textMore">{$goods[0].name}</p>
+                                    <div class="sIntro">{$goods[0].introduce|text}</div>
+                                    <div class='prompt'><span>笔记数:{$goods[0].count}</span><span>{$goods[0].time_age}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div style="display: none" data-uid="{$uid}" data-role="page_info" data-type="{$type}"  data-value="{$page}"></div>
+                </empty>
+                <include file="_notelist"/>
+                <gt name="first_num" value="9">
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
+                </gt>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__PUBLIC_JS__/public.js"></script>
+</block>

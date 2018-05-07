@@ -1,0 +1,89 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/task.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a external class="iconfont icon-xiangzuojiantou pull-left button button-link" href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title open-about">社区生涯</a>
+            </header>
+            <div class="content" >
+                <div class="content-block noEdge">
+                    <!--等级-->
+                    <div class="taskTop">
+                        <div class="taskLine"></div>
+                        <div class="taskLine another"></div>
+                        <div class="taskOne">
+                            <div class="taskCircle flexWrap bfCircle">LV 2</div>
+                        </div>
+                        <div class="taskOne">
+                            <div class="taskCircle flexWrap bfCircle">LV 3</div>
+                        </div>
+                        <div class="taskOne">
+                            <div class="taskCircle flexWrap ctCircle">
+                                <img src="__IMG__/aaa.jpg" alt="">
+                            </div>
+                            <div class="ctLevel">LV 4</div>
+                        </div>
+                        <div class="taskOne">
+                            <div class="taskCircle afCircle">
+                                <div class="taskMask flexWrap">LV 5</div>
+                            </div>
+                        </div>
+                        <div class="taskOne">
+                            <div class="taskCircle flexWrap afCircle">
+                                <div class="taskMask flexWrap">LV 6</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--进度条-->
+                    <div class="prpWrap">
+                        <p class="taskMine">我的经验值:</p>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 60%;">
+                                <div class="progress-value">60%</div>
+                            </div>
+                        </div>
+                        <p class="taskNum">60/100</p>
+                    </div>
+                    <!--任务-->
+                    <div class="buttons-tab">
+                        <a href="#tab1" class="tab-link active button">每日任务</a>
+                        <a href="#tab2" class="tab-link button">新手任务</a>
+                        <a href="#tab3" class="tab-link button">进阶任务</a>
+                    </div>
+                    <div class="tabs">
+                        <div id="tab1" class="tab active">
+                            <ul class="taskList">
+                                <li>
+                                    <div class="left"><i class="iconfont icon-qiandao"></i><span>签到官方号（1/1）</span></div>
+                                    <div class="center"><i class="iconfont icon-jingyan"></i><span>+10</span></div>
+                                    <i class="iconfont icon-iconfontduigou right"></i>
+                                </li>
+                                <a href="">
+                                    <li>
+                                        <div class="left"><i class="iconfont icon-qiandao"></i><span>点赞10次（0/10）</span></div>
+                                        <div class="center"><i class="iconfont icon-jingyan"></i><span>+10</span></div>
+                                        <i class="iconfont icon-iconfontduigou icon-enter"></i>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                        <div id="tab2" class="tab">
+                            <div class="noTask">
+                                <p class="iconfont icon-meiyoushuju"></p>
+                                <p class="noText">还没有发布任务~请耐心等待~</p>
+                            </div>
+                        </div>
+                        <div id="tab3" class="tab">
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

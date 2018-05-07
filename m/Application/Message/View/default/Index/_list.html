@@ -1,0 +1,93 @@
+<volist name="message" id="list">
+    <switch name="list.type">
+        <case value="Weibo">
+            <!--评论样式-->
+            <div class="baseBox">
+                <div class="info">
+                    <a href="{$list.content.user.space_mob_url}">
+                        <div class="avatar">
+                            <img src="{$list.content.user.avatar128}" alt="">
+                        </div>
+                    </a>
+                    <div class="name">
+                        <a class="textMore" href="{$list.content.user.space_mob_url}">{$list.content.user.nickname}</a>
+                        <p class="location textMore">{$list.create_time|friendlyDate}</p>
+                    </div>
+                </div>
+                <div class="proContent">{$list.content.title|parse_weibo_content}</div>
+                <!--原动态-->
+                <a href="{:U($list['content']['url'],$list['content']['args'])}">
+                    <div class="old">
+                        <div class="pic">
+                            <!--原微博如果有图片，则取图片，如果多张则取第一张，如果没有，采用默认图片-->
+                            <img src="{$list.content.weibo_data.user.avatar128}" alt="">
+                        </div>
+                        <!--原微博的作者和内容-->
+                        <div class="oldInfo">
+                            <p class="textMore">{$list.content.weibo_data.user.nickname}</p>
+                            <p class="">{$list.content.weibo_data.content|strip_tags}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </case>
+        <case value="Weibo_crowd">
+            <!--圈子消息-->
+            <div class="baseBox">
+                <div class="info">
+                    <a href="{$list.content.user.space_mob_url}">
+                        <div class="avatar">
+                            <img src="{$list.content.user.avatar128}" alt="">
+                        </div>
+                    </a>
+                    <div class="name">
+                        <a class="textMore" href="{$list.content.user.space_mob_url}">{$list.content.user.nickname}</a>
+                        <p class="location textMore">{$list.create_time|friendlyDate}</p>
+                    </div>
+                </div>
+                <a href="{$list.content.web_url}">
+                    <div class="proContent">{$list.content.content}</div>
+                </a>
+            </div>
+        </case>
+        <case value="Ucenter">
+            <!--点赞样式-->
+            <div class="baseBox">
+                <div class="info">
+                    <a href="{$list.content.user.space_mob_url}">
+                        <div class="avatar">
+                            <img src="{$list.content.user.avatar128}" alt="">
+                        </div>
+                    </a>
+                    <div class="name">
+                        <a class="textMore" href="{$weibo.user.space_mob_url}">{$list.content.title}</a>
+                        <p class="location textMore">{$list.create_time|friendlyDate}</p>
+                    </div>
+                </div>
+                <a href="{$list.content.web_url}">
+                    <div class="proContent">{$list.content.content}</div>
+                </a>
+            </div>
+        </case>
+        <case value="Common_system">
+            <!--领红包样式-->
+            <div class="baseBox">
+                <div class="info">
+                    <a href="{$list.content.user.space_mob_url}">
+                        <div class="avatar">
+                            <img src="{$list.content.user.avatar128}" alt="">
+                        </div>
+                    </a>
+                    <div class="name">
+                        <a class="textMore" href="{$weibo.user.space_mob_url}">{$list.content.title}</a>
+                        <p class="location textMore">{$list.create_time|friendlyDate}</p>
+                    </div>
+                </div>
+                <a href="{$list.content.web_url}">
+                    <div class="proContent">{$list.content.content}</div>
+                </a>
+            </div>
+        </case>
+        <default />
+    </switch>
+</volist>

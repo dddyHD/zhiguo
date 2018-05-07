@@ -1,0 +1,116 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_363019_ljd2fwauukwyu8fr.css"/>
+    <link rel="stylesheet" href="__CSS__/order.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">选择支付方式</a>
+            </header>
+            <form name="form" method="post">
+                <div class="content" style="background-color: #F2F2F2">
+                    <div class="content-block noEdge">
+                        <div class="goods_message">
+                            <div class="goods_cover">
+                                <img src="{$goods.pictures|getThumbImageById=60,80}">
+                            </div>
+                            <div class="name_price">
+                                <if condition="$idAmount eq 1">
+                                    <span class="item-after txt">商品： <b>{$goods.name}</b></span>
+                                    <else />
+                                    <span class="item-after txt" title="商品：{$goods.name}等{$idAmount}件商品">商品：<b>{$goods.name}等{$idAmount}件商品</b></span>
+                                </if>
+                                <span>价格：<b>{$goods.price}元</b> </span>
+                            </div>
+                        </div>
+                        <if condition="$is_pay eq false">
+                            <div class="pay-block">
+                                <div class="pay-title">
+                                    <span class="pay-method">支付方式</span>
+                                    <div id="own" style="display: none">
+                                        <span>现有余额：</span>
+                                        <span id="my_own"></span>
+                                    </div>
+                                </div>
+                                <div class="pay-card">
+                                    <volist name="score" id="vo">
+                                        <div class="pay-item">
+                                           <a style="margin-right: 10px;" data-role="goBuy" data-id="{$order.id}" type="radio" class="method station" name="method" data-value="{$vo.FIELD}">站内{$vo.score.title}：{$vo.have}{$vo.score.unit}</a>
+                                        </div>
+                                    </volist>
+                                </div>
+                                <div class="pay-card">
+                                    <div class="pay-item">
+                                        <a style="margin-right: 10px;font-size: 16px" href="{:U('index',array('id'=>$order[id]))}" data-role="wechat" type="radio" class="method station" name="method" value="wechat" checked="checked">
+                                            <i class="iconfont icon-weixinzhifu" style="color: #00a65a;margin-right:6px "></i>微信支付
+                                        </a>
+                                    </div>
+                                    <div class="pay-item">
+                                       <a style="margin-right: 10px;" data-role="alipay" data-id="{$order[id]}" type="radio" class="method station" name="method" value="alipay" >
+                                           <i class="iconfont icon-zhifubao" style="color: #1394DC;line-height: 28px;font-size: 26px"></i>
+                                       </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <else/>
+                            <a class="goBuyed">该商品已被购买</a>
+                        </if>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $(function () {
+            $(document).on('click','[data-role="goBuy"]',function () {
+                var order_id = $(this).attr('data-id');
+                var method =  $(this).attr('data-value');
+                if(method !='alipay'&& method !='wechat'){
+                    if(confirm('确定购买此商品吗')){
+                        $.post("{:U('Order/index/payOrder')}",{order_id:order_id,method:method},function (res) {
+                            if(res.status==1){
+                                $.toast(res.info);
+                                location.href=res.url;
+                            }else {
+                                $.toast(res.info);
+                            }
+                        })
+                    }
+                }
+            });
+            var textLeng = 40;
+            var str = $('.txt').html();
+            if(str.length > textLeng){
+                $('.txt').html(str.substring(0,40)+"...");
+            }
+        })
+    </script>
+    <script type="text/javascript" src="ap.js"></script>
+    <script>
+        $(document).on('click','[data-role="alipay"]',function (e) {
+            var order_id = $(this).attr('data-id');
+            var ua = window.navigator.userAgent.toLowerCase();
+            $.post("{:U('Order/index/pay')}",{order_id:order_id},function (res) {
+                if(res.status==false){
+                    $.toast(res.info);
+                }else {
+                    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                        e.preventDefault();
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        _AP.pay(res);
+                        return false;
+                    }else{
+                        window.location.href = res;
+                    }
+                }
+            });
+        })
+    </script>
+</block>

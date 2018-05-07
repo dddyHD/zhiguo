@@ -1,0 +1,16 @@
+<volist name="commentAll" id="list">
+    <li class="judge" style="display: block">
+        <div class="flexDiv">
+            <div class="flexLeft">
+                <div class="rightDiv mInfo">
+                    <img src="{$list.avatar64}">
+                    <span class="jName textMore">{$list.nickname}</span>
+                </div>
+            </div>
+            <div class="flexRight">{$list.create_time|time_format='Y年m月d日'}</div>
+        </div>
+        <div class="jContent">
+            <p>{$list.comment}</p>
+        </div>
+    </li>
+</volist>

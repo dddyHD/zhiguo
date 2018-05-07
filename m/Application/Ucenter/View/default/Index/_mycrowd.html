@@ -1,0 +1,22 @@
+<volist name="mycrowd_list" id="item">
+    <li class="one info">
+        <a href="">
+            <div class="avatar">
+                <img src="{$item.logo|getThumbImageById=65,65}" alt="">
+            </div>
+        </a>
+        <div class="name">
+            <a href="">{$item.title}</a>
+            <p class="location textMore">{$item.intro|default='还没有写介绍~'}</p>
+            <p class="num">
+                <span><i class="iconfont icon-fensi"></i>{$item.member_count|default=0}</span>
+                <span><i class="iconfont icon-groupcopy5"></i>{$item.post_count|default=0}</span>
+            </p>
+        </div>
+        <if condition="$item['uid'] eq is_login()">
+            <a external href="{:U('Weibo/Crowd/crowdManager',array('id'=>$item['id']))}" class="follow">管理</a>
+            <else/>
+            <a external href="{:U('Weibo/Index/index',array('crowd_id'=>$item['id']))}" class="follow">进入</a>
+        </if>
+    </li>
+</volist>

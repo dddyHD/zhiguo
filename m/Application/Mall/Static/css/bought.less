@@ -1,0 +1,110 @@
+
+.active{
+  color: #EC725D !important;
+}
+.flexBox{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin:5px 0;
+  .box1{
+    i{
+      color: #888888;
+    }
+  }
+  .box2{
+    .seek{
+      border: none;
+      padding-right: 5px;
+    }
+  }
+}
+.bought_part{
+  padding: 10px;
+  .bought_flow{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 5px;
+    justify-content: center;
+    width: 33.333%;
+    .goods_img{
+      width: 80px;
+      height: 100px;
+    }
+    p{
+      text-align: center;
+      padding:10px 0;
+      font-size: 0.9em;
+    }
+  }
+  .empty {
+    width: 100%;
+    margin-top: 70px;
+    margin-bottom: 190px;
+    .empty-img {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+      img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    p {
+      font-size: 16px;
+      text-align: center;
+      padding: 45px 0px;
+    }
+  }
+  .unlogin {
+    width: 100%;
+    margin-top: 70px;
+    margin-bottom: 190px;
+    .unlogin-img {
+      width: 250px;
+      height: 150px;
+      margin: 0 auto;
+      img {
+        width: 250px;
+        height: 150px;
+      }
+    }
+    p {
+      font-size: 16px;
+      text-align: center;
+      padding: 45px 0px;
+    }
+  }
+  .bought_list{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    .goods_img{
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+    }
+    .goods_info{
+      margin-left: 5px;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      .cont{
+        color: #1a1a1a;
+        font-size: 16px;
+        font-weight:bold;
+      }
+      .goods_time{
+        margin-top: 10px;
+      }
+      div{
+        margin-top: 5px;
+      }
+      .goods_speed{
+        margin-top: 5px;
+      }
+    }
+  }
+}

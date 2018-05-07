@@ -1,0 +1,18 @@
+<volist name="crowd_list" id="item">
+<li class="one info">
+    <a href="">
+        <div class="avatar">
+            <img src="{$item.detail.logo|getThumbImageById=65,65}" alt="">
+        </div>
+    </a>
+    <div class="name">
+        <a href="">{$item.detail.title}</a>
+        <p class="location textMore">{$item.detail.intro|default='还没有写介绍~'}</p>
+        <p class="num">
+            <span><i class="iconfont icon-fensi"></i>{$item.detail.member_count|default=0}</span>
+            <span><i class="iconfont icon-groupcopy5"></i>{$item.post_count|default=0}</span>
+        </p>
+    </div>
+    <a external href="{:U('Weibo/Index/index',array('crowd_id'=>$item['crowd_id']))}" class="follow">进入</a>
+</li>
+</volist>

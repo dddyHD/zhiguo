@@ -1,0 +1,68 @@
+<extend name="Public/base"/>
+<block name="body">
+    <link rel="stylesheet" href="./Application/Mall/Static/css/theme.css"/>
+    <div class="page-bar">
+        <link rel="stylesheet" href="./Application/Order/Static/css/daterangepicker.css" />
+        <script src="./Application/Order/Static/js/moment.min.js"></script>
+        <script src="./Application/Order/Static/js/jquery.daterangepicker.js"></script>
+        <ul class="page-breadcrumb">
+            <li>
+                <a href="{:U('Admin/Index/index')}">首页  </a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>设置首页模版</span>
+            </li>
+        </ul>
+        <div class="page-toolbar">
+            <include file="Public/_addTo"/>
+        </div>
+    </div>
+
+    <!-- 标题栏 -->
+    <div class="main-title">
+        <h2>设置首页模版</h2>
+    </div>
+    <a class="btn ajax-post btn-danger tox-confirm btn btn-default" data-role="Preservation" style="background-color: #00C0EF;border:1px solid #00C0EF">保存</a><br>
+    <div class="main">
+        <div class="prompt">设置首页后，部分首页数据需清空缓存方可生效</div>
+        <div class="theme-all row">
+            <volist name="theme" id="val">
+                <div class="theme-single col-xs-3">
+                    <img src="{$val.ht_name_cover}" data-role='{$val.id}' data-id="{$val.id}">
+                    <a href="#">
+                        <div class="choose" data-role="choose" style="color: #34495e">
+                        <input name='theme' type="radio" value="{$val.id}"><span>{$val.title}</span>
+                    </div></a>
+                </div>
+                <div class="modal fade" id="myModal_{$val.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div style="padding-left: 14%;padding-top: 6%" class="modal-dialog">
+                            <img src="{$val.ht_name}">
+                    </div>
+                </div>
+            </volist>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/theme.js"></script>
+    <script>
+        var length=$('.col-xs-3').length;
+        for (var i=0;i<length;i++){
+            $(".col-xs-3 img").eq(i).click(function () {
+                var id=$(this).attr('data-id');
+                $('#myModal_'+id).modal({
+                    keyboard: true
+                });
+            });
+        }
+        //进入默认选中
+        var checkId='{$themeId}';
+        for(var j=0;j<$('.choose input').length;j++){
+           if($('.choose input').eq(j).val()==checkId){
+               $('.choose input').eq(checkId).attr("checked",true);
+           }
+        }
+    </script>
+
+</block>

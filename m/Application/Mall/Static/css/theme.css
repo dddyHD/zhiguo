@@ -1,0 +1,39 @@
+.main {
+  width: 100%;
+  background-color: #fff;
+}
+.main .title {
+  font-size: 28px;
+  font-weight: bold;
+}
+.main .prompt {
+  margin-top: 10px;
+  font-size: 20px;
+}
+.main .theme-all {
+  margin-top: 10px;
+}
+.main .theme-all .theme-single {
+  padding: 20px;
+}
+.main .theme-all .theme-single img {
+  width: 80%;
+  height: 80%;
+}
+.main .theme-all .theme-single .choose {
+  margin-top: 30px;
+}
+.main .theme-all .theme-single .choose span {
+  font-size: 18px;
+}
+.main .Preservation {
+  float: right;
+  margin-right: 30px;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-color: #169BD5;
+  border-radius: 10px!important;
+  color: #fff;
+}

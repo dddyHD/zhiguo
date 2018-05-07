@@ -1,0 +1,149 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/wallet.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">我的钱包</a>
+            </header>
+            <div class="content infinite-scroll infinite-scroll-bottom" data-distance="100">
+                <div class="content-block noEdge noShadow">
+                    <div class="walletHead">
+                        <p>钱包余额</p>
+                        <p>￥<span>{$totalMoney}</span></p>
+                    </div>
+                    <div class="walletNav buttons-tab">
+                        <a class="oneNav tab-link" href="#tab1" data-total="{$count}" data-role="tab"><i class="iconfont icon-jiaoyijilu"></i><span>交易记录</span></a>
+                        <a class="oneNav tab-link" href="#tab2"><i class="iconfont icon-chongzhi"></i><span>充值</span></a>
+                        <a class="oneNav tab-link" <if condition='$isBindWeixin'> href="#tab3" <else/> onclick="$.toast('绑定微信后，才可提款')"</if>><i class="iconfont icon-tixian"></i><span>提现</span></a>
+                    </div>
+                    <div class="walletInfo">
+                        <div class="detail tabs">
+                            <div  id="tab1" class="tab active">
+                                <ul id="tab_frist">
+                                </ul>
+                                <div class="mt" data-distance="100" data-ptr-distance="55">
+                                    <div class="infinite-scroll-preloader">
+                                        <div class="preloader"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab2" class="tab">
+                                <div class="part-warp">
+                                    <p class="re-title">充值数额</p>
+                                    <input type="text" class="money" name="amount">元
+                                    <a class="sure" href="javascript:" data-role="sure">确定</a>
+                                </div>
+                            </div>
+                            <div id="tab3" class="tab">
+                                <div class="part-warp">
+                                    <p class="re-title">选择提现类型：</p>
+                                    <div class="item-block">
+                                        <div class="item-warp">
+                                            <volist name="fields" id="vo">
+                                                <div class="pay-item" data-role="pay-item">
+                                                    <input style="margin-right: 10px;" type="radio" id="field" name="field" value="{$vo.FIELD}">{$vo.score.title}
+                                                    <span>（可提现：￥{$vo.withdraw}）</span>
+                                                </div>
+                                            </volist>
+                                        </div>
+                                    </div>
+                                    <p class="re-title">提现金额：</p>
+                                    <div class="list-block" style="margin-top: 0;">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div>￥</div>
+                                                <div class="item-input">
+                                                    <input type="text" id="draw_amount" name="draw_amount" placeholder="输入提现金额">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="re-title">支付宝信息：</p>
+                                    <div class="list-block" style="margin-top: 0;">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-input">
+                                                    <input type="text" id="alipay" name="alipay" style="border-bottom:1px solid #ececec " placeholder="输入支付宝账号">
+                                                    <input type="text" id="alipay_name" name="alipay_name" placeholder="支付宝姓名">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="sure" href="javascript:" data-role="confirm">确定</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $(function () {
+            var flag = 1;
+            $('[data-role="sure"]').click(function () {
+                var amount = $('.money').val();
+                if(flag){
+                    $.post("{:U('Order/index/recharge')}",{amount:amount},function (res) {
+                        flag = 0;
+                        if(res.status==1){
+                            $.toast(res.info);
+                            location.href=res.url;
+                        }else {
+                            flag = 1;
+                            $.toast(res.info)
+                        }
+                    }, 'json')
+                }
+
+            });
+            $('[data-role="confirm"]').click(function () {
+                var field = $('#field:checked').val();
+                var draw_amount = $('#draw_amount').val();
+                var alipay = $('#alipay').val();
+                var alipay_name = $('#alipay_name').val();
+                $.confirm(
+                        '支付宝账号:'+alipay+'<br/>支付宝姓名:'+alipay_name,
+                        '信息确认!',
+                        function(){
+                            withdraw(field,draw_amount,alipay,alipay_name);
+                        },
+                        function(){
+                            $.toast('取消');
+                        }
+                );
+            });
+
+            function withdraw(field,draw_amount,alipay,alipay_name) {
+                if(flag){
+                    $.post("{:U('Order/index/withdraw')}",{field:field,draw_amount:draw_amount,alipay:alipay,alipay_name:alipay_name},function (res) {
+                        flag = 0;
+                        if(res.status==1){
+                            $.toast(res.info);
+                            location.href=res.url;
+                        }else {
+                            flag = 1;
+                            $.toast(res.info)
+                        }
+                    }, 'json')
+                }
+            }
+        });
+        $('[data-role="pay-item"]').click(function () {
+            $('.pay-item').children().removeAttr('checked');
+            $(this).children().attr('checked','checked');
+        });
+    </script>
+    <script src="__PUBLIC__/js/refreshData.js"></script>
+    <script>
+        var total = $("[data-role='tab']").attr('data-total');
+        refreshData('Ucenter/index/wallet',total,'#tab_frist',{})
+    </script>
+</block>

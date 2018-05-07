@@ -1,0 +1,54 @@
+<nav class="bar bar-tab bottomBar">
+    <php>$channel = get_channel();</php>
+    <volist name="channel" id="list">
+        <if condition="$list.child eq NULL">
+            <a data-transition="slide" class="tab-item external select-os-icon-block"
+                <eq name="list.out_site" value="0">href="{:U($list['url'])}#{$list.title}"<else/>href="{$list['url']}#{$list.title}"</eq>
+                <eq name="list.target" value="1">target="_blank"</eq>>
+                <span class="icon iconfont {$list.icon}"></span>
+                <span class="tab-label">{$list.title} </span>
+            </a>
+            <else/>
+            <li class="tab-item external select-os-icon-block open-bottom-channel open-popover" data-role="oc-channel">
+                <span class="icon iconfont {$list.icon}"></span>
+                <span class="tab-label">{$list.title} </span>
+
+                <ul class="aboveBox">
+                    <volist name="list.child" id="child">
+                        <li><a <eq name="child.target" value="1">target="_blank"</eq>
+                            <eq name="child.out_site" value="0">href="{:U($child['url'])}"<else/>href="{$child['url']}"</eq>>{$child.title}</a>
+                        </li>
+                    </volist>
+
+                </ul>
+
+            </li>
+        </if>
+    </volist>
+    <a data-transition="slide" class="tab-item external select-os-icon-block" href="{:U('Mall/Index/bought')}#已购">
+    <span class="icon iconfont icon-fuwu"></span>
+    <span class="tab-label">已购 </span>
+</a>
+    <a data-transition="slide" class="tab-item external select-os-icon-block" href="{:U('Ucenter/Index/index')}#我">
+        <span class="icon iconfont icon-wode"></span>
+        <span class="tab-label">我 </span>
+    </a>
+</nav>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    var url=window.location.href;
+    var tab= $('.tab-item');
+    var i=0;
+    for(;i<tab.length;i++){
+        var link=tab[i].toString();
+        if(link.indexOf(url)!=-1){
+            $('.tab-item').eq(i).addClass('active').siblings().removeClass('active');
+            break;
+        }else if(i==tab.length-1){
+            $('.tab-item').eq(0).addClass('active').siblings().removeClass('active');
+        }
+    }
+</script>
+
+
+

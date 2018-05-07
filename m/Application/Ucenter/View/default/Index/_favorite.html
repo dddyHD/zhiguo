@@ -1,0 +1,30 @@
+<div class="fBox">
+<volist name="collection" id="list">
+    <div class="flexDiv mall">
+        <div class="flexLeft">
+            <div class="leftDiv mCover">
+                <img src="{$list.user.avatar128}" alt="作者头像">
+            </div>
+            <div class="rightDiv mInfo">
+                <p class="mName textMore">{$list.user.nickname}</p>
+            </div>
+        </div>
+        <div class="flexRight">{$list.create_time|time_format}</div>
+    </div>
+    <div class="bottom">
+        <a href={:U('mall/index/detail',array('id'=>$list['detail']['id']))}>
+            <div class="imageText" style="justify-content: space-between">
+                <div class="collection" style="display: flex">
+                    <div class="ppWrap"><img src="{$list.detail.pictures|getThumbImageById=160,160}" alt=""></div>
+                    <div>
+                       <p class="mName">{$list.detail.name}</p>
+                       <div class="sIntro">{$list.detail.introduce|text}</div>
+                       <p class="view"><i class=" icon iconfont icon-yanjing1 blank"></i>{$list.detail.views}</p>
+                    </div>
+                </div>
+                <p class="price" style="align-items: flex-end">￥{$list['detail']['price']}</p>
+            </div>
+        </a>
+    </div>
+</volist>
+</div>

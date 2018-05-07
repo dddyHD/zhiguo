@@ -1,0 +1,230 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/detail.css"/>
+    <link rel="stylesheet" href="__CSS__/comment.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_363019_ahz7srqnrrq3q5mi.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_416989_t531lobbwp1u4n29.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">商品详情</a>
+            </header>
+            <div class="content">
+                <div class="content-block noEdge dContent">
+                    <div class="tabs">
+                        <div id="tab1" class="tab active">
+                            <div class="content-block noEdge">
+                                <div style="padding: 0" class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="2000">
+                                    <div class="swiper-wrapper">
+                                            <div class="swiper-slide"><img style="margin: 0 auto" src="{$good['banner']|getThumbImageById=1080,720}" alt=""></div>
+                                    </div>
+                                </div>
+
+                                <div class="dInfo">
+                                    <p class="dName"  data-status="{$shelf}">{$good.name}</p>
+                                    <if condition="$good.price eq 0">
+                                        <span class="button button-fill">免费</span>
+                                    <else/>
+                                        <if condition="$is_pay">
+                                            <span class="button button-fill">已购</span>
+                                        <else/>
+                                            <a class="button button-fill jump">试读</a>
+                                        </if>
+                                    </if>
+                                </div>
+
+                                <div class="dIntro">
+                                    <div class="dTitle"><i class="iconfont icon-jieshao"></i>介绍</div>
+                                    <div class="dMore">{$good.introduce}</div>
+                                </div>
+                                <div class="comment">
+                                    <div class="content-block noEdge">
+                                        <div class="cmtHead">
+                                            <i class="iconfont icon-xiaoxi"></i>评论
+                                        </div>
+                                        <div class="commentList">
+                                            <if condition="$commentAll neq null">
+                                                    <include file="_judge"/>
+                                                <else />
+                                                <div class="empty ">还没有书面评论</div>
+                                            </if>
+                                        </div>
+                                        <if condition="($good.price eq 0) OR $is_pay">
+                                            <div class="writeComment">
+                                                <i class="iconfont icon-bi"></i><a data-role="go-comment">一句话分享你学到的</a>
+                                            </div>
+                                        </if>
+                                        <if condition='$commentCount gt 10'>
+                                            <a href="{:U('Mall/index/seeAllComment',array('id'=>$good['id']))}" class="seeMore">
+                                                <span style="color:#ec725d">查看更多</span>
+                                            </a>
+                                        </if>
+                                    </div>
+                                </div>
+
+                                <div class="dIntro dPre">
+                                    <div class="dTitle" id="jump">
+                                        <if condition="$good.price eq 0">
+                                            <i class="iconfont icon-jieshao"></i>免费
+                                        <else/>
+                                            <if condition="$is_pay">
+                                               <i class="iconfont icon-jieshao"></i>已购
+                                            <else />
+                                               <i class="iconfont icon-jieshao"></i>试读
+                                            </if>
+                                        </if>
+                                    </div>
+                                    <if condition="$good.price eq 0">
+                                        <div class="dMore">{$good.content}</div>
+                                    <else/>
+                                        <if condition="$is_pay">
+                                            <div class="dMore">{$good.content}</div>
+                                        <else/>
+                                            <div class="dMore">{$good.show}</div>
+                                        </if>
+                                    </if>
+                                    <div class="tip">
+                                        <if condition="$good.price eq 0">
+                                            <p>阅读</p>
+                                        <else/>
+                                            <if condition="$is_pay">
+                                                <else />
+                                                <img src="__IMG__/fugei.png">
+                                            </if>
+                                        </if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <include file="rehome"/>
+
+            <!--底部悬浮栏-->
+            <div class="dBottom">
+                <div class="dLeft">
+                    <div class="dCollect do-collect" data-id="{$good.id}">
+                        <i class="iconfont icon-concerned"
+                        <neq name="is_login" value="0"><eq name="good.is_collect" value="1">style="color:red";</eq></neq>>
+                        </i>
+                        <span>收藏</span>
+                    </div>
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin={$service['QQ']}&site=qq&menu=yes" class="dService " >
+                        <i class="iconfont  icon-kefu1">
+                        </i>
+                        <span>联系客服</span>
+                    </a>
+                </div>
+                <if condition="$good.price eq 0">
+                    <a href="{:U('article',array('id'=>$good['id']))}" class="dPrice goBuy">阅读</a>
+                <else/>
+                    <if condition="$is_pay">
+                        <a href="{:U('article',array('id'=>$good['id']))}" class="dPrice goBuy">阅读</a>
+                    <else/>
+                        <form name="form" method="post">
+                            <input hidden type="text" id="goods_id" name="goods_id" value="{$good.id}">
+                            <a href="javascript:" data-role="goBuy" class="dPrice goBuy">￥ {$good.price} 购买</a>
+                        </form>
+                     </if>
+                </if>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <div class="popup popup-about sendWrap">
+        <div class="content-block">
+            <textarea placeholder="写评论......"  class="sendArea" rows="3"></textarea>
+            <div class="commentOp">
+                <a href="javascript:" data-role="sendComment" data-id="{$good.id}" class="proBtn close-popup">发布</a>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__PUBLIC_JS__/public.js"></script>
+    <script>
+        $("[data-role='go-comment']").click(function () {
+            $.popup('.sendWrap')
+        });
+        $("[data-role='goBuy']").click(function () {
+            var goods_id = $('#goods_id').val();
+            $.post("{:U('Order/index/addOrder')}",{goods_id:goods_id},function (res) {
+                $("[data-role='goBuy']").unbind();
+                if(res.status==1){
+                    $.toast(res.info);
+                    location.href=res.url;
+                }else {
+                    $.toast(res.info);
+                }
+            })
+        })
+    </script>
+    <script src="__JS__/detail.js"></script>
+    <script src="__JS__/sendcomment.js"></script>
+    <script src="__JS__/prompt.js"></script>
+    <script type="text/javascript" src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+    <script type="text/javascript">
+        wx.config({
+            debug: false,
+            appId: '{$signPackage["appId"]}',
+            timestamp: '{$signPackage["timestamp"]}',
+            nonceStr: '{$signPackage["nonceStr"]}',
+            signature: '{$signPackage["signature"]}',
+            jsApiList: [
+                // 所有要调用的 API 都要加到这个列表中
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareQZone'
+            ]
+        });
+    </script>
+    <script type="text/javascript src='http://203.195.235.76/jssdk/js/zepto.min.js"></script>
+    <script type="text/javascript">
+        //完成wx.config，执行这里
+        wx.ready(function () {
+            //分享到朋友圈
+            wx.onMenuShareTimeline({
+                title: '{$good.name}', // 分享标题
+                link:window.location.href,
+                imgUrl: "{$share_img}", // 分享图标
+                success: function () {
+                    // 分享成功执行此回调函数
+                    alert('已分享');
+                },
+                cancel: function () {
+                    alert('已取消');
+                }
+            });
+
+            //分享给朋友
+            wx.onMenuShareAppMessage({
+                title: '{$good.name}', // 分享标题
+                desc: '{$good.introduce|strip_tags}',
+                link:window.location.href,
+                imgUrl: "{$share_img}", // 分享图标
+                trigger: function (res) {
+                    // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                },
+                success: function (res) {
+                    // 分享成功执行此回调函数
+                    alert('已分享');
+                },
+                cancel: function (res) {
+                    alert('已取消');
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        });
+    </script>
+</block>

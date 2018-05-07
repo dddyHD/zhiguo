@@ -1,0 +1,19 @@
+<volist name="data" id="vo" >
+    <li>
+        <div class="nwInfo">
+            <div class="author">
+                <div class="cov"><img src="{$vo['uid']['avatar512']}" alt="头像"></div>
+                <a class="textMore" href="">{$vo.uid.nickname}</a>
+                <span class="time">{$vo.create_time|friendlyDate}</span>
+            </div>
+            <a href="{:U('News/index/detail',array('id'=>$vo['id']))}" class="cont">{$vo.title}</a>
+            <div class="otherInfo textMore">
+                <a class="type" href="{:U('news/index/singleTypeList',array('category'=>$vo['category']['id'],'title'=>$vo['category']['title']))}">{$vo.category}</a>
+                <span>阅读 {$vo.view}</span>
+                <span>评论 {$vo.comment}</span>
+                <span>点赞 {$vo.support}</span>
+            </div>
+        </div>
+        <a href="{:U('News/index/detail',array('id'=>$vo['id']))}" class="nwCover"><if condition="$vo['cover'] neq 0"><img src="{:getThumbImageById($vo['cover'])}" alt="资讯封面"></if></a>
+    </li>
+</volist>

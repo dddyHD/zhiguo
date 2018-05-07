@@ -1,0 +1,21 @@
+<volist name="goods" id="list">
+    <a href="{:U('detail',array('id'=>$list['id']))}">
+        <div class="flexDiv mall  mallList">
+            <div class="flexLeft">
+                <div class="leftDiv mCover">
+                    <img src="{$list.img}" style="width: 60px;height: 80px" alt="商城封面">
+                </div>
+                <div class="rightDiv mInfo">
+                    <p class="mName textMore">{$list.name}</p>
+                    <div class="sIntro">{$list.introduce|text}</div>
+                    <p class="view"><i class=" icon iconfont icon-yanjing1 blank"></i>{$list.views}</p>
+                </div>
+                <if condition="$list.price eq 0">
+                    <span class="mIntro price">免费</span>
+                    <else />
+                    <span class="mIntro price">￥{$list.price}</span>
+                </if>
+            </div>
+        </div>
+    </a>
+</volist>

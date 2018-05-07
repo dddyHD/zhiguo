@@ -1,0 +1,73 @@
+<extend name="Base/common"/>
+<block name="body">
+    <php>
+        ini_set('date.timezone','Asia/Shanghai');
+        require_once(APP_PATH."Order/Lib/WxPay.Api.php");
+        require_once(APP_PATH."Order/Lib/WxPay.JsApiPay.php");
+        require_once(APP_PATH."Order/Lib/log.php");
+
+        $chat=WxPayConfig::MCHID().date("YmdHis");
+        $tools = new JsApiPay();
+        $openId = $tools->GetOpenid();
+        $input = new WxPayUnifiedOrder();
+        $input->SetBody("充值余额");
+        $input->SetOut_trade_no($chat);
+        $input->SetTotal_fee($amount);
+        $input->SetTime_start(date("YmdHis"));
+        $input->SetTime_expire(date("YmdHis", time() + 600));
+        $input->SetNotify_url($notify_url);
+        $input->SetTrade_type("JSAPI");
+        $input->SetOpenid($openId);
+        $order = WxPayApi::unifiedOrder($input);
+        $jsApiParameters = $tools->GetJsApiParameters($order);
+        $data['wechat_order']=$chat;
+        D('order_recharge')->where(array('id'=>$id))->save($data);
+    </php>
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">处理订单</a>
+            </header>
+            <div class="content">
+                <div style=" width:16rem;height: 16rem;margin: 5rem auto;text-align: center;line-height:16rem;font-size: 30px;color: #999">请确认付款</div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        //调用微信JS api 支付
+        function jsApiCall()
+        {
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+            <php> echo $jsApiParameters;</php>,
+                function(res){
+                    if(res.err_msg == "get_brand_wcpay_request:ok"){
+                        window.location.href = "{:U('ucenter/index/wallet')}"
+                    }
+                }
+        );
+        }
+
+        function callpay()
+        {
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }else{
+                jsApiCall();
+            }
+        }
+
+        $(function(){
+            callpay();
+        })
+    </script>
+</block>

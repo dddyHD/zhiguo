@@ -1,0 +1,232 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+    <link rel="stylesheet" href="__CSS__/sign.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_416989_77smtexyl5hoajor.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_416989_a5r0jgp2q7jk0529.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a href="javascript:" class="title">我</a>
+            </header>
+            <input type="hidden" data-role="is_share" value="{$is_share}"/>
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="content me">
+                <div class="content-block noEdge">
+                    <php>if (is_login())   {</php>
+                    <div class="baseBox">
+                        <div class="list-block">
+                            <div class="flexDiv myBox">
+                                <a external href="{:U('Ucenter/Index/mine',array('uid'=>$uid))}">
+                                    <div class="flexLeft">
+                                        <div class="leftDiv">
+                                            <img src="{$user_info.avatar128}" alt="头像" class="eAvatar">
+                                        </div>
+                                        <div class="rightDiv" style="align-items: flex-start">
+                                            <p class="mName textMore">{$user_info.nickname}</p>
+                                            <p class="mIntro textMore">查看或编辑个人资料</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="flexRight" data-role="open-code"><i class="iconfont icon-erweima01" style="font-size: 25px"></i></div>
+                            </div>
+                            <!--<div class="myNum">-->
+                                <!--<a href="{:U('Ucenter/Index/fans',array('uid'=>$uid,'type'=>'follow'))}"><div class="oneNum"><span>关注</span><span><empty name="user_info.following">0<else/>{$user_info.following}</empty></span></div></a>-->
+                                <!--<a href="{:U('Ucenter/Index/fans',array('uid'=>$uid,'type'=>'fans'))}"><div class="oneNum"><span>粉丝</span><span><empty name="user_info.fans">0<else/>{$user_info.fans}</empty></span></div></a>-->
+                                <!--<a href="{:U('Ucenter/Index/note',array('uid'=>$uid))}"><div class="oneNum"><span>笔记</span><span>{$noteCount}</span></div></a>-->
+                            <!--</div>-->
+                        </div>
+
+                    </div>
+                    <div class="baseBox">
+                        <div class="list-block">
+                            <ul>
+                                <li class="item-content item-link">
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <a href="{:U('Ucenter/Index/note',array('uid'=>$uid))}">
+                                        <div class="item-inner">
+                                            <div class="item-title"><i class="iconfont icon-biji"></i>
+                                            </div>
+                                            <div class="item-after">笔记</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="item-content item-link">
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <a href="{:U('Ucenter/Index/favorite')}">
+                                        <div class="item-inner">
+                                            <div class="item-title"><i class="iconfont icon-shoucangjia"></i>
+                                            </div>
+                                            <div class="item-after">收藏夹</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="item-content item-link">
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <a href="{:U('Ucenter/Index/resetPassword')}">
+                                        <div class="item-inner">
+                                            <div class="item-title"><i class="iconfont icon-xiugaimima"></i>
+                                            </div>
+                                            <div class="item-after">修改密码</div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <!--<li class="item-content item-link">-->
+                                    <!--<div class="item-media"><i class="icon icon-f7"></i></div>-->
+                                    <!--<a href="{:U('Ucenter/Index/task')}">-->
+                                        <!--<div class="item-inner">-->
+                                            <!--<div class="item-title"><i class="iconfont icon-renshengjieduan"></i></div>-->
+                                            <!--<div class="item-after">社区人生<sub class="mySub">从小白到大神</sub></div>-->
+                                        <!--</div>-->
+                                    <!--</a>-->
+                                <!--</li>-->
+
+                                <li class="item-content item-link">
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <a href="{:U('Ucenter/Index/wallet')}">
+                                        <div class="item-inner">
+                                            <div class="item-title"><i class="iconfont icon-qianbao"></i></div>
+                                            <div class="item-after">我的钱包<sub class="mySub">开启财富人生</sub></div>
+                                        </div>
+                                    </a>
+                                </li>
+                           <!--     <li class="item-content item-link" >
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <a href="{:U('Ucenter/Index/identify')}">
+                                        <div class="item-inner">
+                                            <div class="item-title"><i class="iconfont icon-renzheng"></i></div>
+                                            <div class="item-after">认证</div>
+                                        </div>
+                                    </a>
+                                </li>-->
+                                <li class="item-content item-link" >
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <a href="{:U('Ucenter/Index/order')}">
+                                        <div class="item-inner">
+                                            <div class="item-title"><i class="iconfont icon-dingdan"></i></div>
+                                            <div class="item-after">我的订单</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="item-content item-link" >
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <a href="{:U('Message/Index/index')}">
+                                        <div class="item-inner">
+                                            <div class="item-title"><i class="iconfont icon-xiaoxi"></i></div>
+                                            <div class="item-after">我的消息</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="baseBox">
+                        <div class="list-block">
+                            <ul>
+                                <li class="item-content item-link" data-role="sign_in">
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title"><i class="iconfont icon-qiandao"></i>
+                                            </div>
+                                            <div class="item-after">签到</div>
+                                        </div>
+                                </li>
+
+                                <li class="item-content item-link">
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <a href="{:U('rank')}" external>
+                                        <div class="item-inner">
+                                            <div class="item-title"><i class="iconfont icon-icon2"></i></div>
+                                            <div class="item-after">排行榜</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="baseBox">
+                        <div class="list-block">
+                            <ul>
+                                <li class="item-content item-link">
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <a data-role="" href="{:U('setting')}">
+                                        <div class="item-inner" style="background-image: none">
+                                            <div class="item-title"><i class="iconfont icon-set"></i></div>
+                                            <div class="item-after" >设置</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="baseBox">
+                        <div class="list-block">
+                            <ul>
+                                <li class="item-content item-link">
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <a data-role="logout">
+                                        <div class="item-inner" style="background-image: none">
+                                            <div class="item-title"><i class="iconfont icon-tuichu"></i></div>
+                                            <div class="item-after" >退出登录</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <php>}else{ </php>
+                        <div class="noLogin">
+                            <div class="pciWrap"> <img src="__IMG__/nologin.jpg" alt=""></div>
+                            <p>登录后可查看更多信息</p>
+                            <div class="btnGroup">
+                                <a href="{:U('Member/register')}" class="btn external">注册</a>
+                                <a href="{:U('Member/login')}" class="btn external">登录</a>
+                            </div>
+                        </div>
+                    <php>}</php>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/login.js"></script>
+
+    <script>
+        $("[data-role='sign_in']").click(function () {
+            var modal = $.modal({
+                zdywrap:'signWrap',
+                afterText:  '<div class="signIn"><div class="signCircle"><if condition="$check eq false">点我签到<else/>已签</if></div></div>'+
+                '<p class="signTitle">每日签到</p>'+
+                '<p class="myScore">我的战绩</p>'+
+                '<p class="signNum"><i class="iconfont icon-qiandao1"></i><span>连续签到</span> <span class="fr con_check">{$user_info.con_check}天</span></p>'+
+                '<p class="signNum"><i class="iconfont icon-leijishouyishijiantubiao"></i><span>累计签到</span><span class="fr total_check">{$user_info.total_check}天</span></p>',
+                buttons: [
+                    {
+                        text: '关闭',
+                        bold: true
+                    },
+                    {
+                        text: '排行榜',
+                        bold: true,
+                        onClick: function () {
+                            location.href = U('Ucenter/Index/rank');
+                        }
+                    }
+                ]
+            });
+        });
+        $("[data-role='open-code']").ucard({uid:1,is_share:$('[data-role="is_share"]').val(),is_mine:1});
+    </script>
+
+    <if condition="$check eq false">
+        <script>
+            $("[data-role='sign_in']").click();
+        </script>
+    </if>
+
+
+</block>

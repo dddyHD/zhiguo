@@ -1,0 +1,40 @@
+<volist name="weibo_list" id="item">
+    <div class="proWrap">
+        <div class="info">
+            <a href="">
+                <div class="avatar">
+                    <img src="{$item.user.avatar512}" alt="">
+                </div>
+            </a>
+            <div class="name">
+                <a href="">{$item.user.nickname}</a>
+                <p class="location textMore">
+                    <span>{$item.create_time|friendlyDate}</span>
+                    <notempty name="item.crowd_id">
+                        <a href="{:U('Weibo/Index/index',array('crowd_id'=>$item['crowd_id']))}" style="color:#19bca1" external>来自{$item.crowd_id|get_crowd_title}</a>
+                    </notempty>
+                </p>
+            </div>
+            <if condition="$item['is_follow'] eq 1">
+                <a data-role="follow" data-value="unfollow" data-uid="{$item.uid}" class="follow do-active">已关注</a>
+                <else/>
+                <if condition="$item['uid'] eq is_login()">
+
+                    <else/>
+                    <a data-role="follow" data-value="follow" data-uid="{$item.uid}" class="follow do-active">关注</a>
+                </if>
+            </if>
+        </div>
+        <a external href="{:U('Weibo/Index/detail',array('id'=>$item['id']))}">
+            <div class="proContent">
+                <p class="word-wrap">{$item.fetchContent}</p>
+                <p class="textMore location"><notempty name="$item.pos"><i class="iconfont icon-dingwei"></i></notempty>{$item.pos}</p>
+            </div>
+        </a>
+        <div class="operate">
+            <a external href="{:U('Weibo/Index/detail',array('id'=>$item['id']))}" class="oneOpt flexWrap"> <i class="iconfont icon-dianzan"></i><span>{$item.support}</span></a>
+            <a external href="{:U('Weibo/Index/detail',array('id'=>$item['id']))}" class="oneOpt flexWrap"><i class="iconfont icon-pinglun"></i><span>{$item.comment_count}</span></a>
+           <a external href="{:U('Weibo/Index/detail',array('id'=>$item['id']))}" class="oneOpt flexWrap"> <i class="iconfont icon-zhuanfa"></i><span>{$item.repost_count}</span></a>
+        </div>
+    </div>
+</volist>

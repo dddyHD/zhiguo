@@ -1,0 +1,33 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__JS__/cropper/cropper.min.css"/>
+    <link rel="stylesheet" href="__CSS__/avatar.css"/>
+</block>
+<block name="body">
+    <header class="bar bar-nav comHead">
+        <a external class="iconfont icon-xiangzuojiantou pull-left button button-link back" href="javascript:history.go(-1);"></a>
+        <a href="javascript:" class="title">头像</a>
+    </header>
+    <input type="hidden" value="{$uid}" name="uid">
+    <div id="container" style="height: 100%;">
+        <img id="image" src="{$avatar}">
+    </div>
+    <div class="box-btn">
+        <label class="choose" for="inputImage">相册
+            <input  type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
+        </label>
+        <span class="upload-avatar" type="button"  data-role="change" title="Crop">
+            提交
+        </span>
+    </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $("[data-role='change']").click(function () {
+            $.toast('正在上传请稍后....');
+        });
+    </script>
+    <script src="__JS__/cropper/cropper.min.js"></script>
+    <script src="__JS__/avatar.js"></script>
+</block>

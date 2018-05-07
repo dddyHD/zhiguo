@@ -1,0 +1,33 @@
+<extend name="Base/common"/>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a href="javascript:" class="title">跳转提醒</a>
+            </header>
+
+            <div class="content">
+                <div class="outMask">
+                    <div class="outBox">
+                        <i class="iconfont icon-tishi"></i>
+
+                        <empty name="url">
+                            <p>您访问的链接不存在</p>
+                            <else/>
+                            <p>即将跳转至站外链接：</p>
+                            <p>{$url.url}</p>
+                        </empty>
+
+
+                        <div class="outBtn">
+                            <a href="javascript:history.go(-1)" class="outButton no">返回</a>
+                            <notempty name="url">
+                            <a href="{$url.url}" class="outButton yes">立即前往</a>
+                            </notempty>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

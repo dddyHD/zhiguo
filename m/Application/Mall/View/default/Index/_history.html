@@ -1,0 +1,12 @@
+<volist name="historyResult" id="val">
+    <li  data-search-id="{$val.id}">
+        <div onclick="historyClick('{$val.historical}')" class="left">
+            <i class="iconfont icon-time"></i>
+         <span >{$val.historical}</span>
+        </div>
+        <i data-id="{$val.id}" class="iconfont icon-guanbi" onclick="deleteOneSearchHistory({$val.id})"></i>
+    </li>
+</volist>
+<if condition="count($historyResult) gt 0">
+<li  onclick="allclear()" >清空搜索记录</li>
+</if>

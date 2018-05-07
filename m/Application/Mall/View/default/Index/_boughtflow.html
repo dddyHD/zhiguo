@@ -1,0 +1,12 @@
+<div class="flex" style="display: flex;flex-wrap: wrap">
+    <volist name="book_list" id="val">
+            <div class="bought_flow">
+                <a href="{:U('detail',array('id'=>$val['id']))}">
+                    <div class="goods_img">
+                        <img src="{$val.img}" width="75" height="100" >
+                    </div>
+                    <p class="textMore" style="width: 80px">{$val.name}</p>
+                </a>
+            </div>
+    </volist>
+</div>

@@ -1,0 +1,63 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/wallet.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">我的钱包</a>
+            </header>
+            <div class="content infinite-scroll infinite-scroll-bottom" style="bottom: 40px" data-distance="100">
+                <div class="content-block noEdge noShadow">
+                    <p><a href="javascript:callpay(1);" class="button">1分(测试专用)</a></p>
+
+                    <p><a href="javascript:callpay(1000);" class="button">10元</a></p>
+                    <p><a href="javascript:callpay(5000);" class="button button-light">50元</a></p>
+                    <p><a href="javascript:callpay(10000);" class="button button-dark">100元</a></p>
+                    <input type="hidden" id="open_id" value="{$open_id}"/>
+                </div>
+
+                <script type="text/javascript">
+                    //调用微信JS api 支付
+                    function jsApiCall(num)
+                    {
+                        $.post(U('Ucenter/Index/payapi'),{money:num,open_id:$('#open_id').val()},function(res){
+                            if (res.status == 0) {
+                                $.toast(res.info);
+                            } else {
+                                WeixinJSBridge.invoke(
+                                        'getBrandWCPayRequest',
+                                        JSON.parse(res),
+                                        function(res){
+                                            if(res.err_msg == "get_brand_wcpay_request:ok"){
+                                                window.location.href=U('Ucenter/Index/Wallet',['v',(new Date().getTime())]);
+                                            }else{
+                                                $.toast('订单支付失败！');
+                                            }
+                                        }
+                                );
+                            }
+                        });
+                    }
+
+                    function callpay(num)
+                    {
+                        if (typeof WeixinJSBridge == "undefined"){
+                            if( document.addEventListener ){
+                                document.addEventListener('WeixinJSBridgeReady', jsApiCall(num), false);
+                            }else if (document.attachEvent){
+                                document.attachEvent('WeixinJSBridgeReady', jsApiCall(num));
+                                document.attachEvent('onWeixinJSBridgeReady', jsApiCall(num));
+                            }
+                        }else{
+                            jsApiCall(num);
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</block>

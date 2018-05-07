@@ -1,0 +1,24 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/completion.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">付款成功</a>
+            </header>
+            <div class="content">
+                <div class="success-block">
+                    <p>恭喜，付款成功！</p>
+                    <p>您可以在已购商品页面找到此商品。<br/>
+                       现在可以畅享阅读了。
+                    </p>
+                    <a href="{:U('Mall/index/bought')}" class="btn">去阅读</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

@@ -1,0 +1,127 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/login.css">
+    <link rel="stylesheet" href="__CSS__/weixin.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_d7wp8psve5pl23xr.css">
+</block>
+<block name="body">
+    <div class="loginWrap">
+        <div class="mode">
+            <span><a class="active" data-role="binding_accounts">绑定已有帐号</a></span>
+            <span><a  data-role="register_accounts">注册新帐号</a></span>
+        </div>
+        <div class="prompt" style="display: flex">
+            <span> <i class="iconfont icon-wenxintishi" style="color: #ec725f"></i>如果绑定已有的微社区帐号，下次登录可选择微信直接登录</span>
+        </div>
+        <div class="formWrap">
+            <div class="content-block">
+                <div class="content-block">
+                    <if condition="$tip eq 'exist'">
+                        <form method="post" data-role="form" data-url="{:U('Weixin/Index/existLogin')}">
+                            <div class="loginInput">
+                                <!--<input placeholder="手机号或邮箱" type="text" name="username" value="">-->
+                                <i class="iconfont icon-shouji"></i><input placeholder="手机号" type="text" name="username" value="">
+                            </div>
+                            <div class="loginInput">
+                                <i class="iconfont icon-mima"></i>
+                                <input placeholder="密码" type="password" name="password">
+                                <i class="iconfont icon-caozuo_yanjing" data-role="visible"></i>
+                            </div>
+                            <div class="btnWrap">
+                                <a href="#" data-role="weixin_login" class="comBtn" style="color: #fff;margin-top:4em ">绑定<i class="iconfont icon-arrow-right"></i></a>
+                            </div>
+                        </form>
+
+                        <else/>
+                        <div class="binding_accounts" >
+                            <form method="post" data-role="form" data-url="{:U('Weixin/Index/existLogin')}">
+                                <div class="loginInput">
+                                    <!--<input placeholder="手机号或邮箱" type="text" name="username" id="text" value="">-->
+                                    <i class="iconfont icon-shouji"></i><input placeholder="手机号" type="text" name="username" id="text" value="">
+                                </div>
+                                <!--<div class="loginInput">-->
+                                    <!--<i class="iconfont icon-nicheng"><input placeholder="昵称" type="text" name="nickname" id="nickname">-->
+                                <!--</div>-->
+                                <div class="loginInput">
+                                    <i class="iconfont icon-mima"></i><input placeholder="密码" type="password" name="password" id="password">
+                                    <i class="iconfont icon-caozuo_yanjing" data-role="visible"></i>
+                                </div>
+                                <div class="btnWrap">
+                                    <a href="#" data-role="weixin_login" class="comBtn" style="color: #fff">确认绑定<i class="iconfont icon-arrow-right"></i></a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="register_accounts" style="display: none">
+                            <form method="post" data-role="form" data-url="{:U('Ucenter/Member/register')}">
+                                <div class="loginInput">
+                                    <i class="iconfont icon-shouji"></i> <input placeholder="手机号" type="text" name="mobnumber" id="tel" value="">
+                                </div>
+                                <div class="loginInput">
+                                    <i class="iconfont icon-nicheng"></i><input placeholder="昵称" type="text" name="mnickname" value="">
+                                </div>
+                                <div class="loginInput">
+                                    <i class="iconfont icon-mima"></i><input placeholder="密码" type="password" name="password" id="password">
+                                    <i class="iconfont icon-caozuo_yanjing" data-role="visible"></i>
+                                </div>
+
+                                    <if condition="modC('MOBILE_VERIFY_TYPE', 1, 'USERCONFIG') eq 1">
+                                        <if condition="modC('SMS_REGISTER_RADIO',1,'USERCONFIG') eq 1">
+                                            <div class="loginInput">
+                                                 <div class="loginInput row verify no-gutter">
+                                                     <div class="col-60"><i class="iconfont icon-yanzhengma"></i><input placeholder="短信验证码" type="text" name="reg_verify" id="" value=""></div>
+                                                     <div class="col-40"><a href="#" class="vBtn open-about">获取验证码</a></div>
+                                                 </div>
+                                            </div>
+                                        </if>
+                                    </if>
+
+                                <div class="protocol">
+                                    <input name="protocol" type="checkbox" value="注册后表示你同意" class="checkbox" checked="checked"/>注册后表示你同意<span style="color: #ec725f" class="open-protocol">《用户注册协议》</span>
+                                </div>
+                                <div class="btnWrap">
+                                    <a href="#" data-role="register" class="comBtn" style="color: #fff">注册<i class="iconfont icon-arrow-right"></i></a>
+                                    <a href="{:U('login')}" class="forgot" external>已有账号？前往登录</a>
+                                </div>
+                            </form>
+                        </div>
+                    </if>
+                </div>
+            </div>
+        </div>
+        <div class="stroll" style="margin-top:22em ;z-index:10000;position: relative">
+            <a href="{:U('Mall/Index/index')}">不绑定，先逛逛<i class="iconfont icon-arrow-right"></i></a>
+            <span>温馨提示：不绑定体验不到最优体验，后期绑定比较复杂，建议动动手指现在绑定</span>
+        </div>
+    </div>
+</block>
+<block name="other">
+    <div class="popup popup-about" style="top: 35%">
+        <div class="content-block">
+            <div class="loginInput row verify no-gutter">
+                <div class="col-30"><a href="#" class="textColor">发送验证码至：</a></div>
+                <div class="col-70"><input placeholder="" data-role="tel" type="text" class="input_distance" disabled></div>
+            </div>
+            <div class="loginInput row verify no-gutter">
+                <div class="col-30"><img class="reloadverify" alt="点击切换" src="{:U('verify')}"></div>
+                <div class="col-70"><input placeholder="验证码" type="text" id="verifyCode" value="" class="input_distance"></div>
+            </div>
+            <div class="vBtnWrap row no-gutter">
+                <div class="col-50"><a href="#" class="vBtn halfWidth close-popup sendV">取消</a>
+                </div>
+                <div class="col-50"><a href="#" data-role="sendVerify" class="vBtn halfWidth sendV">发送</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="popup protocol_content"  style="top: 25%;">
+        <dl>
+            <dt>用户协议</dt>
+            <dd>{$protocol.protocol}</dd>
+        </dl>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/weixin_bind.js"></script>
+    <script src="__JS__/password.js"></script>
+    <script src="__JS__/register.js"></script>
+    <script src="__PUBLIC_JS__/placeholder.js"></script>
+</block>

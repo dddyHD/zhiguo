@@ -1,0 +1,109 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a external class="iconfont icon-xiangzuojiantou pull-left button button-link"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title open-about">基本资料</a>
+            </header>
+            <div class="content edit">
+                <div class="content-block noEdge">
+                    <div class="baseBox">
+                        <div class="list-block">
+                            <input type="hidden" data-uid="{$user.uid}" name="uid">
+                            <ul>
+                                <li class="item-content item-link" data-role="change_avatar">
+                                <div class="item-media"><i class="icon icon-f7"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title">头像</div>
+                                    <div class="item-after_right" style="max-height: initial"><img
+                                            src="{$user.user.avatar512}" alt="头像" class="eAvatar"></div>
+                                </div>
+                                </li>
+
+                                <li class="item-content item-link" data-value="nickname" data-role="change_name">
+                                <div class="item-media"><i class="icon icon-f7"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title">昵称</div>
+                                    <div class="item-after_right nickname">{$user.nickname}</div>
+                                </div>
+                                </li>
+
+
+                                <li class="item-content item-link">
+
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title">性别</div>
+                                        <div class="item-after_right ">
+                                            <input type="text" name="sex" data-role="chose_sex" readonly
+                                                   value="{$user['sex']== 1?'男':($user['sex']== 2 ?'女':'保密')}">
+
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-link">
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title">生日</div>
+                                        <div class="item-after_right textMore ">
+                                            <input type="text" name="birthday" data-role="chose_birth" readonly
+                                                   value="{$user.birthday}" >
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-link" data-value="signature" data-role="change_sign">
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title">个性签名</div>
+                                        <div class="item-after_right textMore signature">
+                                            {$user.signature|default='这个人很懒，神马都没写~'}
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="baseBox">
+                        <div class="list-block">
+                            <ul>
+                                <if condition="$uid eq is_login()">
+                                    <li class="item-content item-link" data-value="mobile" data-role="chose_phone">
+                                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">手机</div>
+                                            <div class="item-after_right mobile">{$user.user.mobile|default="不想填~"}</div>
+                                        </div>
+                                    </li>
+                                </if>
+                                <li class="item-content item-link">
+                                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title">地址</div>
+                                        <div class="item-after_right textMore">
+                                            <input type="text" name="city" data-role="chose_city" readonly
+                                                   value="{$user['pos_province']} {$user['pos_city']} {$user['pos_district']}" >
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+
+    <if condition="$uid eq is_login()">
+        <script src="__JS__/edit.js"></script>
+    </if>
+
+</block>

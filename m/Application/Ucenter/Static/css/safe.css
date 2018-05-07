@@ -1,0 +1,108 @@
+.content {
+  background-color: #fff;
+}
+.content .setting-item {
+  padding: 0 20px;
+}
+.content .setting-item a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #eee;
+}
+.binding {
+  display: inline-block;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 5px;
+  line-height: 30px;
+  text-align: center;
+}
+.unbinding {
+  color: #fff;
+  background-color: #ec725d;
+}
+.isbinding {
+  border: 1px solid #000;
+  color: #000;
+}
+.touxiang {
+  display: inline-block;
+  height: 60px;
+  line-height: 60px;
+}
+.touxiang i {
+  font-size: 60px;
+  color: #02d102;
+}
+.content-block {
+  padding: 0.5rem;
+}
+.loginInput {
+  width: 100%;
+  margin-bottom: .5rem;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  height: 2.8em;
+  line-height: 2.5em;
+  border-bottom: 1px solid #ccc;
+}
+.loginInput:hover {
+  border-bottom: 1px solid #ec725f;
+}
+.loginInput i {
+  font-size: 1.25em;
+  color: #333333;
+  margin-left: 10px;
+}
+.loginInput input {
+  width: 80%;
+  border: none;
+  text-align: left;
+  height: 90%;
+  margin-left: 12px;
+  font-size: 0.9375em;
+}
+.loginInput .col-60 {
+  display: flex;
+}
+.verify {
+  border: none !important;
+}
+.verify > div {
+  height: 100%;
+  line-height: 2.5em;
+}
+.verify > div:last-child {
+  padding-left: .5rem;
+}
+.verify > div:last-child input {
+  border: 1px solid #eee !important;
+  border-radius: 3px;
+  box-shadow: none !important;
+}
+.verify img {
+  max-width: 100%;
+}
+.vBtnWrap {
+  text-align: center;
+  margin-top: 1rem;
+}
+.vBtn {
+  display: inline-block;
+  padding: 0;
+  font-size: .7rem;
+  width: 100%;
+  text-align: center;
+  border-left: 1px solid #ccc;
+  color: #EC725D;
+}
+.halfWidth {
+  width: 50%;
+  height: 90%;
+}
+.sendV {
+  background-color: transparent;
+  border: 1px solid #eee;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,68 @@
+.screen{
+   margin-top:2.2rem;
+   display: flex;
+   text-align: center;
+   span{
+      flex-grow: 1;
+      padding: 5px;
+   }
+   .active{
+      color: #ec725d;
+      border-bottom: 1px solid #ec725d;
+   }
+}
+
+//点单列表的样式
+.orderList{
+   padding: 10px;
+   width: 100%;
+   display: flex;
+   height: 90px;
+   border-bottom: 1px solid #ccc;
+   .judge{
+      padding: 5px 0;
+   }
+   .ico{
+      width: 20%;
+      height: 100%;
+      margin-top: 4px;
+      .border{
+         width: 60px;
+         height: 60px;
+         margin:0 auto;
+         border-radius: 50%;
+         text-align: center;
+         line-height:60px;
+         background-color: #EC725D;
+         .iconfont{
+            font-size: 48px;
+            color: #fff;
+         }
+      }
+
+   }
+   .order_message{
+      padding:2px 8px;
+      width: 80%;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: space-between;
+      .column {
+         flex-basis: 100%;
+         display: flex;
+         justify-content: space-between;
+         span{
+            height: 26px;
+            line-height: 26px;
+            overflow: hidden;
+         }
+      }
+      .font_title{
+         font-size: 15px;
+      }
+      .font_title2{
+         font-size: 12px;
+         color: #666;
+      }
+   }
+}

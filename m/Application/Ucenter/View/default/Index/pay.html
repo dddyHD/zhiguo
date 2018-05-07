@@ -1,0 +1,53 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/wallet.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">我的钱包</a>
+            </header>
+            <div class="content infinite-scroll infinite-scroll-bottom" style="bottom: 40px" data-distance="100">
+                <div class="content-block noEdge noShadow">
+
+                    <button id="pay" onclick="callpay();">支付</button>
+                    <script type="text/javascript">
+                        //调用微信JS api 支付
+                        function jsApiCall()
+                        {
+                            WeixinJSBridge.invoke(
+                                    'getBrandWCPayRequest',
+                                    {$params},
+                                    function(res){
+                                        alert(JSON.stringify(res));
+                                        if(res.err_msg == "get_brand_wcpay_request:ok"){
+                                            window.location.href=U('Weko/Client/paymentOk',['payment_id',payment_id]);
+                                        }else{
+                                            $.toast('订单支付失败！');
+                                        }
+                                    }
+                            );
+                        }
+
+                        function callpay()
+                        {
+                            if (typeof WeixinJSBridge == "undefined"){
+                                if( document.addEventListener ){
+                                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                                }else if (document.attachEvent){
+                                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                                }
+                            }else{
+                                jsApiCall();
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

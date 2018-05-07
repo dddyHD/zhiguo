@@ -1,0 +1,26 @@
+<volist name="cate_goods" id="list">
+    <div class="flexDiv mall  mallList">
+        <div class="flexLeft">
+            <div class="leftDiv mCover">
+                <img src="{$list.img}" alt="商城封面">
+            </div>
+            <a href="{:U('detail',array('id'=>$list['id']))}" class="rightDiv mInfo">
+                <p class="mName textMore">{$list.name}</p>
+                <div class="sIntro">{$list.introduce|text}</div>
+                <if condition="$list.price eq 0">
+                    <span class="mIntro listPrice"  data-id="{$list['id']}">免费</span>
+                    <else />
+                    <span class="mIntro listPrice"  data-id="{$list['id']}">￥{$list.price}</span>
+                </if>
+            </a>
+            <eq name="list.is_pay" value="1">
+                <span  style="color: #ec725d;text-align: center;padding-top: 48px">已购</span>
+                <else/>
+                <div class="flexCart <eq name='list.is_car' value='1'>join_car</eq>" <eq name='list.is_car' value='1'>data-car="{$list.is_car}"</eq> data-role="join" data-id="{$list.id}">
+                <i class="iconfont icon-gouwuche"></i>
+                <span>加入</span>
+            </eq>
+        </div>
+    </div>
+    </div>
+</volist>

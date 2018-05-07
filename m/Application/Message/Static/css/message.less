@@ -1,0 +1,151 @@
+@import "../../../../Public/css/core";
+.dialog{
+  background-color: @comColor;
+  padding: 0 .5rem;
+  .list-block{
+    margin: 0;
+    ul:before,ul:after{
+      content: initial;
+    }
+    .item-content{
+      padding-left: 0;
+      .mNum{
+        position: absolute;
+        right: 1.5rem;
+        top: 13px;
+        background-color: @themeColor;
+        color: @comColor;
+        font-size: .6rem;
+        padding: 0 5px;
+        border-radius: 100%;
+      }
+    }
+  }
+  a{
+    width: 100%;
+  }
+  .item-inner{
+    justify-content: flex-start;
+    .item-title{
+      .iconfont{
+        font-size: 22px;
+        color: @themeColor;
+      }
+    }
+    .item-after{
+      margin-left: 1rem;
+    }
+  }
+
+}
+.mDetail{
+  .baseBox{
+    margin-top: .5rem;
+    padding: .5rem;
+    .info{
+      border: none;
+      padding: 0;
+      .follow{
+        top:10px;
+      }
+    }
+    .proContent{
+      padding: .5rem 0;
+    }
+    .old{
+      background-color: #F2F2F2;
+      display: flex;
+      .pic{
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+      }
+      .oldInfo{
+        padding: .5rem;
+        max-width: 315px;
+        p{
+          max-width: 290px;
+          &:last-child{
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+}
+.focus{
+  .iconfont{
+    color: @themeColor;
+  }
+  .name{
+    color: #0a8ddf;
+    margin: 0 .3rem;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 375px){
+  .old{
+    .pic{
+      width: 60px!important;
+      height: 60px!important;
+    }
+    .oldInfo{
+      max-width: 240px!important;
+      padding: 0 .5rem!important;
+      p{
+        max-width: 200px!important;
+        &:first-child{
+          margin-top:.3rem!important; ;
+        }
+      }
+    }
+  }
+}
+.noMessage{
+  font-size: 20px;
+  line-height: 100px;
+  text-align: center;
+  height: 100px;
+}
+.msgWrap{
+  a:last-child .msgList{
+    border: none;
+  }
+  .msgList{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+    span{
+      color: #999;
+      font-size: 12px;
+    }
+    .msgLeft{
+      display: flex;
+      .msgCover{
+        .radiusWrap(50px,5px);
+        .flexWrap;
+        margin-right: 10px;
+        background-color: #00a0e9;
+        i{
+          color: #fff;
+          font-size: 24px;
+        }
+      }
+      .msgInfo{
+        .msgName{
+          color: #333;
+        }
+        .msgDetail{
+          color: #999;
+          font-size: 13px;
+          margin-top: 5px!important;
+          .msgNew{
+            margin-left: 8px;
+            max-width: 150px;
+            vertical-align: bottom;
+          }
+        }
+      }
+    }
+  }
+}

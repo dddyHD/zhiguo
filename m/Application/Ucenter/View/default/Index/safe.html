@@ -1,0 +1,103 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+    <link rel="stylesheet" href="__CSS__/sign.css"/>
+    <link rel="stylesheet" href="__CSS__/safe.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_196881_91ktkhrdi6xvquxr.css">
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">账号与安全</a>
+            </header>
+            <div class="content">
+                <div class="content-block noEdge">
+                    <div class="baseBox">
+                        <div class="list-block">
+                            <if condition="$is_sync">
+                                <div class="flexDiv myBox">
+                                    <a external href="{:U('Ucenter/Index/mine',array('uid'=>$uid))}">
+                                        <div class="flexLeft">
+                                            <div class="leftDiv">
+                                                <img src="{$user_info.avatar512}" alt="头像" class="eAvatar">
+                                            </div>
+                                            <div class="rightDiv" style="align-items: flex-start">
+                                                <p class="mName textMore">{$user_info.nickname}</p>
+                                                <p class="mIntro textMore">微信账号绑定</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="btnWrap">
+                                        <a href="#" data-role="cancel_bind" class="binding isbinding">取消绑定</a>
+                                    </div>
+                                </div>
+                                <else/>
+                                <div class="flexDiv myBox">
+                                    <div class="flexLeft">
+                                        <div class="leftDiv">
+                                            <span class="touxiang"><i class="iconfont icon-weixin "></i></span>
+
+                                        </div>
+                                        <div class="rightDiv" style="align-items: flex-start">
+                                            <p class="mName textMore">未绑定</p>
+                                            <p class="mIntro textMore">微信账号绑定，快速登录</p>
+                                        </div>
+                                    </div>
+                                    <div class="btnWrap">
+                                        <a href="{:U('Ucenter/Member/weChatBind')}" data-role="bind_weixin" class="binding unbinding">绑定微信</a>
+                                    </div>
+                                </div>
+                            </if>
+
+                            <if condition="$is_mobile">
+                                <div class="flexDiv myBox">
+                                    <a external href="{:U('Ucenter/Index/mine',array('uid'=>$uid))}">
+                                        <div class="flexLeft">
+                                            <div class="leftDiv">
+                                                <!--<img src="{$user_info.avatar512}" alt="头像" class="eAvatar">-->
+                                                <span class="touxiang"><i class="iconfont icon-shouji1"></i></span>
+                                            </div>
+                                            <div class="rightDiv" style="align-items: flex-start">
+                                                <p class="mName textMore">{$is_mobile}</p>
+                                                <p class="mIntro textMore">手机号绑定</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="btnWrap">
+                                        <a href="#" data-role="cancel_mobile_bind" class="binding isbinding">取消绑定</a>
+                                    </div>
+                                </div>
+                                <else/>
+                                <div class="flexDiv myBox">
+                                    <div class="flexLeft">
+                                        <div class="leftDiv">
+                                            <span class="touxiang"><i class="iconfont icon-shouji1"></i></span>
+
+                                        </div>
+                                        <div class="rightDiv" style="align-items: flex-start">
+                                            <p class="mName textMore">未绑定</p>
+                                            <p class="mIntro textMore">手机号绑定，快速登录</p>
+                                        </div>
+                                    </div>
+                                    <div class="btnWrap">
+                                        <a href="{:U('mobile_bind')}" data-role="" class="binding unbinding">绑定手机</a>
+                                    </div>
+                                </div>
+                            </if>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="other">
+
+</block>
+<block name="script">
+    <script src="__JS__/safe.js"></script>
+</block>

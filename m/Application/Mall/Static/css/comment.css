@@ -1,0 +1,48 @@
+.comment {
+  border-top: 1px solid #eee;
+}
+.comment .commentList {
+  padding: 0 8px;
+}
+.comment .writeComment {
+  margin-left: 16px;
+  padding-bottom: 10px;
+}
+.comment .seeMore {
+  border-top: 1px solid #eee;
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.comment .empty {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.judge {
+  padding: 10px 0;
+}
+.judge .flexDiv .flexLeft .rightDiv {
+  display: flex;
+  flex-direction: row;
+}
+.judge .flexDiv .flexLeft .rightDiv img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+.judge .flexDiv .flexLeft .rightDiv span {
+  margin-left: 10px;
+}
+.judge .jContent {
+  padding: 0;
+  border-top: 0;
+  border-bottom: 1px solid #eee;
+}
+.judge .jContent p {
+  padding-bottom: 8px;
+  padding-left: 44px;
+}

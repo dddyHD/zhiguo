@@ -1,0 +1,97 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/bought.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_76khpehk4s0885mi.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_om7msuzp81uivn29.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a href="javascript:" class="title">已购</a>
+            </header>
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="content me">
+                <div class="content-block noEdge">
+                    <div class="mallNavWrap">
+                        <if condition="is_login()">
+                            <div class="flexBox">
+                                <div class="box1" data-total="{$book_list|count}" data-type="{$aType}">
+                                    <i class="iconfont icon-liebiao2 " data-role='flow' style="margin-right: 5px"></i>
+                                    <i class="iconfont icon-liebiao1" data-role="list" ></i>
+                                </div>
+                                <div class="box2">
+                                    <select class="seek" data-role="seek">
+                                        <option value="0" >最后阅读</option>
+                                        <option value="1" >最新购买</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </if>
+                        <div class="bought_part" data-type="{$aType}">
+                            <if condition="!is_login()">
+                                <div class="unlogin">
+                                    <div class="unlogin-img">
+                                        <img src="./Application/Mall/Static/images/unlogin.png" alt="您的已购页面为空">
+                                    </div>
+                                    <p>oh，您还没有登录。</p>
+                                </div>
+                                <else/>
+                                <if condition="$book_list">
+                                    <else/>
+                                    <div class="empty">
+                                        <div class="empty-img">
+                                            <img src="./Application/Mall/Static/images/empty.png" alt="您的已购页面为空">
+                                        </div>
+                                        <p>oh，您还没有购买任何商品哦。</p>
+                                    </div>
+                                </if>
+                            </if>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__PUBLIC_JS__/refreshData.js"></script>
+    <script>
+        //首次加载
+        var total=$('.box1').attr('data-total');
+        refreshData('mall/index/loadBought',total,'.bought_part',{type:'0'});
+        var listType=$('.bought_part').attr('data-type');
+        if(listType=='flow'){
+           $('.icon-liebiao2').addClass('active');
+        }else if (listType=='list'){
+           $('.icon-liebiao1').addClass('active');
+        }else{
+           $('.icon-liebiao2').addClass('active');
+        }
+        //点击加载
+        $("[data-role='flow']").click(function () {
+            var total=$('.box1').attr('data-total');
+            var sort=$('[data-role="seek"]').val();
+            $(this).addClass('active').siblings().removeClass('active');
+            $('.bought_part').attr('data-type','flow');
+            $('.bought_part div').remove();
+            refreshData('mall/index/loadBought',total,'.bought_part',{type:'flow',sort:sort});
+        });
+        $("[data-role='list']").click(function () {
+            var total=$('.box1').attr('data-total');
+            var sort=$('[data-role="seek"]').val();
+            $(this).addClass('active').siblings().removeClass('active');
+            $('.bought_part').attr('data-type','list');
+            $('.bought_part div').remove();
+            refreshData('mall/index/loadBought',total,'.bought_part',{type:'list',sort:sort});
+        });
+        //选择排序方式
+        $('[data-role="seek"]').change(function () {
+            var total=$('.box1').attr('data-total');
+            var sort=$(this).val();
+            var type=$('.bought_part').attr('data-type');
+            $('.bought_part div').remove();
+            refreshData('mall/index/loadBought',total,'.bought_part',{type:type,sort:sort});
+        })
+    </script>
+</block>

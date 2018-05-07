@@ -1,0 +1,200 @@
+<!--&& !$check && !$check_is_checked-->
+<php>if(is_login() ){</php>
+<link rel="stylesheet" type="text/css" href="{:getRootUrl()}Addons/CheckIn/Static/css/check.css">
+
+
+<a class="text-center" id="check_in_right"  data-target="$next" data-placement="left"
+   style="background: #fff;height: 30px;line-height: 30px;" href="javascript:"> 签到 </a>
+
+<div class="popover">
+
+    <div class="checkin-remind">
+        <div class="r-top">
+
+            <div class="col-xs-4 text-center r-avatar">
+                <a class="s_avatar" href="{$user_info.space_url}" ucard="1" data-hasqtip="14"
+                   aria-describedby="qtip-14">
+                    <img src="{$user_info.avatar64}" class="avatar-img" style="width: 64px;">
+                </a>
+
+                <div>
+                    <a class="s_avatar text-more" href="{$user_info.space_url}" ucard="1" data-hasqtip="14"
+                       style="color: #fff;font-size: 14px;width: 100%;"
+                       aria-describedby="qtip-14">
+                        {$user_info.nickname}
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="col-xs-8 r-info" style="padding: 0;margin-left: -15px;">
+                <div class="col-xs-6 text-center ">
+                    <p>
+                    <span style="font-size: 22px;">
+                      {$user_info.con_check}
+                    </span> <span style="font-size: 16px;">天 </span>
+                    </p>
+
+                    <p>
+                        连续签到</p>
+
+                </div>
+
+                <div class="col-xs-6 text-center after-line">
+                    <p>
+                    <span style="font-size: 22px;">
+                        {$user_info.total_check}
+                    </span> <span style="font-size: 16px;">天 </span>
+                    </p>
+
+                    <p> 累计签到</p>
+
+                </div>
+
+                <div class="clearfix " style="padding-right: 15px;padding-left: 24px;">
+                    <p>
+                        连签排名：{$user_info.ranking}
+                    </p>
+
+                    <p>
+                        今日已签到：{$user_info.today_count}人
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="r-body">
+
+            <if condition="empty($goods)">
+
+                <div class="text-center r-text">
+                    {$config.remind_text}
+                </div>
+
+                <else/>
+                <div class="r-shop text-center" style="">
+
+                    <div class="pull-left r-shop-left">
+                        <div class="r-shop-score"></div>
+                        <p>已有{$score_type.title}</p>
+
+                        <p>{:sprintf("%.2f",$user_info['score'])}块</p>
+                    </div>
+                    <div class="pull-left  r-shop-center">
+                        <div style="color:#F6744A ">
+                            <php>
+                                $left = $goods['money_need'] - $user_info['score'];
+                                $lefts = number_format($left,2);
+                                if($left <= 0){
+                            </php>
+                            可兑换
+                            <php>}else{</php>
+                            差 {$lefts}{$score_type.unit}
+                            <php>}</php>
+                        </div>
+                        <div class="r-arrow"></div>
+                    </div>
+                    <div class="pull-right  r-shop-right">
+
+
+                        <div style="width: 80px;height: 80px">
+                            <a href="{:U('shop/index/goodsdetail',array('id'=>$goods['id']))}">
+                                <img src="{$goods.goods_ico|thumb=80,80}">
+                            </a>
+
+                        </div>
+
+
+                        <p title="{$goods.goods_name}" class="text-more" style="width:80px;;">
+                            <a href="{:U('shop/index/goodsdetail',array('id'=>$goods['id']))}" style="color:#F6744A ;">
+                                {$goods.goods_name}
+                            </a>
+                        </p>
+
+                        <p style="margin-top: -5px"> {$score_type.title}:{$goods.money_need} {$score_type.unit}</p>
+                    </div>
+
+                </div>
+            </if>
+            <div class="r-footer">
+
+            <span style="color: #999;margin-left: 15px ; font-size: 14px">
+                <if condition="!$check_is_checked">
+                    您今天还<span style="color: #F6744A;">没签到</span>哦~
+                    <else/>
+
+                    {:date('m月d日 H:i:s',$check_is_checked['create_time'])}
+
+                </if>
+
+            </span>
+                <if condition="!$check_is_checked">
+                    <a class="checkin-btn" data-role="r_do_checkin">签到赢积分</a>
+                    <else/>
+                    <a class="checkin-btn">今天已签到</a>
+
+                </if>
+
+            </div>
+
+        </div>
+
+        <a href="javascript:" data-role="close_remind"
+           style="position: absolute;right: 0;padding: 5px 10px;top: 0px;color: #fff"><i
+                class="icon icon-remove"></i></a>
+    </div>
+
+</div>
+
+
+<script>
+
+    var bind_remind_event = function () {
+
+        $('[data-role="close_remind"]').unbind('click');
+        $('[data-role="close_remind"]').click(function () {
+            var url = "{:addons_url('CheckIn://CheckIn/closeRemind')}";
+            $('#check_in_right').popover("hide");
+            $.post(url, {}, function () {
+            })
+
+        });
+        $('[data-role="r_do_checkin"]').unbind('click');
+        $('[data-role="r_do_checkin"]').click(function () {
+            var $this = $(this);
+            $.post("{:addons_url('CheckIn://CheckIn/doCheckIn')}", {}, function (res) {
+                if (res.status) {
+                    $('[data-toggle="popover"]').popover("hide");
+                    //$this.replaceWith('<a href="javascript:void(0)" class="btn-sign">已签</a>');
+                    $('.check-tab').find('.active').click();
+                    toast.success(res.info);
+                } else {
+                    handleAjax(res);
+                }
+            });
+        })
+    };
+
+    $(function () {
+        $('#check_in_right').popover()
+        $('#check_in_right').on('shown.bs.popover', function () {
+            $(this).next().css('border',0)
+            bind_remind_event()
+        })
+    })
+</script>
+<php>
+    if(!$check && !$check_is_checked){
+</php>
+<script>
+    $(function(){
+        $('#check_in_right').popover("show");
+        bind_remind_event()
+    })
+</script>
+<php>}</php>
+
+<php>}</php>

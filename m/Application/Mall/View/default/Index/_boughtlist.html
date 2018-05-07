@@ -1,0 +1,22 @@
+<volist name="book_list" id="val">
+    <div class="bought_list" style=" border-bottom: 1px solid #e7e7e7;">
+        <div class="goods_img"><img src="{$val.img}" width="75" height="100" style="margin-left:5px"/></div>
+        <div class="goods_info">
+            <a href="{:U('detail',array('id'=>$val['id']))}" class="cont">{$val.name}</a>
+            <div class="goods_time text">{$val.introduce|text}</div>
+            <div class="writer">作家：{$val.writer_name}</div>
+            <div class="time">购买时间：{$val.buy_time}</div>
+        </div>
+    </div>
+</volist>
+<script>
+    $(function(){
+        var textLeng = 15;
+        for(var i=0;i <$('.txt').length;i++){
+            var str= $('.txt').eq(i).html();
+            if(str.length > textLeng ){
+                $('.txt').eq(i).html(str.substring(0,13)+".....");
+            }
+        }
+    });
+</script>

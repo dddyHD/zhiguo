@@ -1,0 +1,32 @@
+@import "../../../../Public/css/core";
+.edit{
+  background-color: #F5F5F5;
+}
+.baseBox{
+  background-color: @comColor;
+  margin-top: 1rem;
+  .list-block{
+    margin: 0;
+    font-size: .7rem;
+    ul:after,ul:before{
+      content: initial;
+    }
+    .item-content{
+      padding: 0;
+      .item-inner{
+        margin: 0;
+      }
+    }
+  }
+}
+.eAvatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+@media only screen and (min-width: 320px) and (max-width: 375px){
+  .eDetail{
+    max-width: 204px!important;
+  }
+}
+

@@ -1,0 +1,910 @@
+@themeColor: #ec725d;
+@minorTextColor: #999;
+@comColor: #fff;
+//样式初始化
+body {
+  font-family: "Microsoft Yahei" !important;
+  background-color: @comColor !important;
+  font-size: .7rem !important;
+}
+
+a {
+  color: #333;
+}
+
+a:active {
+  color: #888888 !important;
+}
+
+p {
+  margin: 0 !important;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.textMore {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.textColor {
+  color: @minorTextColor;
+  font-size: .7rem;
+}
+
+.pd20 {
+  padding: 2rem 0;
+}
+
+.mg20 {
+  margin-top: 1rem;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.noEdge {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+//按钮样式
+.comBtn {
+  border: 1px solid #eee;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .08);
+  border-radius: 20px;
+  margin: 0 auto;
+  width: 80%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: block;
+  font-size: .7rem;
+  color: @minorTextColor;
+}
+
+.proBtn {
+  display: inline-block;
+  padding: .2rem 1rem;
+  border: 1px solid @themeColor;
+  color: @themeColor;
+  font-size: .6rem;
+  box-shadow: 0 0 5px rgba(236, 114, 93, .4);
+  border-radius: 5px;
+}
+
+.sBtn {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+  right: .5rem;
+  bottom: 70px;
+  background-color: @themeColor;
+  text-align: center;
+  line-height: 2.9rem;
+  color: @comColor;
+  font-size: 30px;
+  opacity: .8;
+  z-index:999999;
+}
+//light7样式初始化
+.list-block .item-link.active-state, html:not(.watch-active-state) .list-block .item-link:active {
+  background-color: transparent!important;
+}
+.col-20 {
+  width: 20%;
+}
+
+.col-30 {
+  width: 30%;
+}
+
+.col-40 {
+  width: 40%;
+}
+
+.col-60 {
+  width: 60%;
+}
+
+.col-64 {
+  width: 64%;
+}
+
+.col-70 {
+  width: 70%;
+}
+
+.page, .page-group {
+  background-color: #f2f2f2;
+}
+
+img {
+  max-width: 100%;
+}
+
+input::-webkit-input-placeholder { /* WebKit browsers */
+  color: #999;
+  font-size: .7rem;
+}
+
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  font-size: .7rem;
+}
+
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #999;
+  font-size: .7rem;
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #999;
+  font-size: .7rem;
+}
+
+.list-block ul {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background: #fff;
+  border: 0;
+}
+
+i.icon.icon-f7 {
+  width: 0;
+  height: 0;
+}
+
+//picker样式
+.picker-modal {
+  background-color: @comColor;
+  .bar {
+    background-color: @comColor;
+    &:after {
+      background-color: #e0e0e0;
+    }
+    .title {
+      color: #5d5d5d;
+      font-weight: normal;
+      font-size: .7rem;
+    }
+    .close-picker {
+      color: #5d5d5d;
+      font-size: .7rem;
+    }
+  }
+}
+
+.modal-inner {
+  background-color: @comColor;
+  border-radius: 5px 5px 0 0;
+  .modal-text {
+    color: #5d5d5d;
+  }
+  .modal-text-input {
+    border-radius: 5px;
+  }
+}
+
+.picker-item {
+  font-size: 1rem !important;
+}
+
+.modal-button {
+  background-color: @comColor;
+  &:after {
+    background-color: #e0e0e0;
+  }
+  &:first-child {
+    border-radius: 0 0 0 5px;
+    color: #5d5d5d;
+  }
+  &:last-child {
+    border-radius: 0 0 5px 0;
+    color: @themeColor;
+  }
+}
+
+.bar {
+  border-bottom: none !important;
+}
+
+.buttons-tab .button.active {
+  z-index: 100;
+  color: @themeColor;
+  border-color: @themeColor;
+}
+/* light样式初始化end*/
+
+.comPosition(@cTop,@cRight,@cBottom,@cLeft) {
+  position: absolute;
+  top: @cTop;
+  right: @cRight;
+  bottom: @cBottom;
+  left: @cLeft;
+}
+
+.triangle {
+  border-top: none;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid @comColor;
+  border-left: 5px solid transparent;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+}
+
+.baseBox {
+  border: 1px solid #eee;
+  padding: 0 .5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .05);
+  border-left: none;
+  border-right: none;
+  overflow: hidden;
+  background-color: @comColor;
+}
+
+//底部导航栏样式
+.bottomBar {
+  background-color: @comColor !important;
+  z-index: 3000;
+  .tab-item {
+    color: #333;
+  }
+  .active {
+    color: @themeColor !important;
+  }
+}
+
+
+//微博式卡片样式start
+.proWrap {
+  background-color: @comColor;
+  border-radius: 3px;
+  margin-bottom: .5rem;
+  border: 1px solid #eee;
+  position: relative;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+}
+
+.info {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding: .5rem;
+  &:last-child {
+    border: none;
+    margin-bottom: 0 !important;
+  }
+  .avatar {
+    .osCircle(50px);
+  }
+  .name {
+    margin-left: .5rem;
+    display: flex;
+    flex-direction: column;
+    font-size: .7rem;
+    justify-content: space-between;
+    a {
+      display: inline-block;
+    }
+    .location {
+      color: @minorTextColor;
+      font-size: .6rem;
+      max-width: 175px;
+    }
+  }
+  .num {
+    font-size: .6rem;
+    color: @minorTextColor;
+    span:last-child {
+      margin-left: 1rem;
+    }
+    .iconfont {
+      margin-right: 5px;
+    }
+  }
+  .follow {
+    position: absolute;
+    .proBtn;
+    right: .5rem;
+    top: 20px;
+  }
+}
+
+.proContent {
+  font-size: .7rem;
+  padding: 0 .5rem;
+  color: #666;
+  position: relative;
+  overflow: hidden;
+  .word-wrap {
+    padding: .5rem 0;
+  }
+}
+
+.operate {
+  background-color: #fcfcfc;
+  display: flex;
+  height: 40px;
+  .oneOpt {
+    flex: 1;
+    color: @minorTextColor;
+    font-size: .7rem;
+    span {
+      margin-left: .3rem;
+    }
+  }
+}
+//微博式卡片样式end
+
+
+
+
+.img-disable {
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.emojione {
+  width: 10%;
+  padding: 2px;
+  display: inline-block !important;
+}
+
+
+
+/*radialindicator.css*/
+.rad-prg {
+  margin: 20px 0;
+}
+
+/** logo inside example **/
+#indicatorContainerWrap5,
+#indicatorContainer5 {
+  display: inline-block;
+  position: relative;
+}
+
+#prgLogo {
+  height: 60px;
+  left: 50%;
+  margin-left: -30px;
+  margin-top: -30px;
+  position: absolute;
+  top: 50%;
+}
+
+/** file drop example **/
+#indicatorContainerWrap6 {
+  position: relative;
+  display: inline-block;
+}
+
+.rad-cntnt {
+  position: absolute;
+  display: table;
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 20px;
+  line-height: 24px;
+}
+
+#prgFileSelector {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+/*radialindicator.css   end*/
+//跳转到站外提醒
+.outMask{
+  position: absolute;
+  top:0;
+  left:0;
+  bottom: 0;
+  right:0;
+  background-color: rgba(0,0,0,.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .outBox{
+    background-color: @comColor;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(255,255,255,.4);
+    width: 70%;
+    text-align: center;
+    .iconfont{
+      font-size: 80px;
+      color: @themeColor;
+      margin-top: -30px;
+      display: inline-block;
+      height: 100px;
+    }
+    p{
+      color: @themeColor;
+      &:last-of-type{
+        color: @minorTextColor;
+      }
+    }
+    .outBtn{
+      width: 100%;
+      height: 45px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+      .outButton{
+        color: @comColor;
+        width: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+      }
+      .no{
+        background-color: #f3334a;
+      }
+      .yes{
+        background-color: #16b595;
+      }
+    }
+  }
+}
+//导航二级菜单样式
+.aboveBox{
+  border-radius: 3px;
+  padding: 10px;
+  box-shadow:  0 0 10px 0 rgba(0, 0, 0, 0.2);
+  background-color: @comColor;
+  min-width: 100px;
+  z-index: 9999;
+  position: absolute;
+  bottom: 58px;
+  display: none;
+  &:before{
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    bottom: -4px;
+    left: 36px;
+    z-index: 9;
+    box-shadow:  0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+  &:after{
+    background-color: @comColor;
+    content: "";
+    width: 100%;
+    height: 10px;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 10;
+  }
+  li{
+    padding: 5px 0;
+    a{
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+
+.sendWrap{
+  top: initial!important;
+  bottom: 0;
+  height: auto;
+  background-color: #fcfcfc;
+  .newSend{
+    padding: .75rem .75rem 0;
+  }
+  .sendArea{
+    width: 100%;
+    border-radius: 5px;
+    border-color: #eee;
+    resize: none;
+    padding: .5rem;
+  }
+  .commentOp{
+    .flexDiv;
+    margin-bottom: .5rem;
+    text-align: right;
+    .iconfont{
+      font-size: 24px;
+    }
+  }
+  .send-bottom{
+    margin-top: 0;
+  }
+}
+
+
+//页面标题
+.proHead{
+  background-color: @themeColor;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px 0 0;
+  color: @comColor;
+  align-items: center;
+  .button{
+    height: auto;
+    border: none;
+  }
+  .focusBtn{
+    display: inline-block;
+    padding: 3px 20px;
+    background-color: @comColor;
+    color: #333;
+    border-radius: 3px;
+    font-size: 12px;
+    border: 1px solid #eee;
+  }
+  a{
+    color: @comColor;
+  }
+}
+.comHead {
+  background-color: @themeColor;
+  line-height: 2.2rem;
+  a {
+    color: @comColor;
+  }
+  .floatIcon {
+    position: absolute;
+    font-size: 12px;
+  }
+}
+//圆角wrap
+.radiusWrap(@difNum,@difRadius){
+  width: @difNum;
+  height: @difNum;
+  border-radius: @difRadius;
+  overflow: hidden;
+}
+//圆形图片的wrap
+.osCircle(@difNum){
+  width: @difNum;
+  height: @difNum;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.comCircle(@num) {
+  width: @num;
+  height: @num;
+  border-radius: 100%;
+  overflow: hidden;
+  display: inline-block;
+  text-align: center;
+  line-height: @num;
+  color: @comColor;
+}
+//flex布局通用样式
+.flexWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flexCol{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.flexDiv{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .flexLeft{
+    display: flex;
+    .rightDiv{
+      .flexCol;
+      margin-left: 10px;
+    }
+  }
+  .flexRight{
+    .flexWrap;
+  }
+}
+
+//个人卡片样式
+.outer{
+  width: 360px;
+  margin-left: -180px;
+}
+.myOwn{
+  min-height: 180px;
+  position: relative;
+  background-color: @comColor;
+  padding: 0 0 10px;
+  border-radius: 0!important;
+  border-top: 4px solid @themeColor;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+  .amyHead{
+    padding: 10px;
+    span{
+      color:@themeColor;
+      line-height: 1;
+      i{
+        margin-right: 5px;
+        font-size: 18px;
+      }
+    }
+    .doFocus{
+      display: inline-block;
+      padding: 3px 10px;
+      font-size: 12px;
+      background-color: #5e5b5b;
+      color: @comColor;
+      border-radius: 20px;
+      i{
+        font-size: 12px;
+        margin-right: 5px;
+        font-weight: bold;
+      }
+    }
+  }
+  .amyBg{
+    margin: 0 10px;
+    .main{
+      background-color: #f2f2f3;
+      padding: 10px;
+      border-radius: 3px;
+      border: 1px solid #eee;
+      box-shadow: 0 0 1px rgba(0,0,0,.1) inset;
+      display: flex;
+      .myAvatar{
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+        background-color: @comColor;
+        overflow: hidden;
+        padding: 5px;
+        margin-right: 10px;
+        img{
+          border-radius: 100%;
+          border: 1px solid #eee;
+        }
+      }
+      .myInfo{
+        align-items: flex-start;
+        p{
+          max-width: 225px;
+        }
+        .myName{
+          color: #6b6969;
+          font-weight: 600;
+          font-size: 16px;
+        }
+        .myIntro{
+          font-size: 13px;
+          color: @themeColor;
+        }
+        .myAddress{
+          font-size: 13px;
+          color: @minorTextColor;
+          i{
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+    .extra{
+      margin: 10px 0 0;
+      span{
+        flex: 1;
+        text-align: center;
+        line-height: 1;
+        font-size: 13px;
+        color: #666;
+        i{
+          color: @themeColor;
+          margin-right: 8px;
+        }
+        &:nth-child(2){
+          border-left: 1px solid #333;
+          border-right: 1px solid #333;
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 374px){
+  .outer {
+    width: 300px;
+    margin-left: -150px;
+    .myAvatar{
+      width: 60px!important;
+      height: 60px!important;
+    }
+    .myInfo p{
+      max-width: 185px!important;
+    }
+    .myName{
+      font-size: 14px!important;
+    }
+    .myIntro,.myAddress{
+      font-size: 12px!important;
+    }
+  }
+}
+//楼中楼样式
+.origin{
+  background-color: @comColor;
+  padding: 10px;
+  .avatar{
+    .osCircle(40px);
+  }
+  .rightDiv{
+    align-items: flex-start!important;
+    span{
+      color: @minorTextColor;
+      font-size: 12px;
+    }
+  }
+  .flexRight{
+    color: @minorTextColor;
+    i{
+      margin-right: 5px;
+      font-size: 18px;
+    }
+  }
+  .cont{
+    padding: 5px 10px 0 50px;
+    color: #333;
+  }
+}
+.dtCmt{
+  padding:10px;
+  border-top: 1px solid #eee;
+  height: 40px;
+}
+.cmtWrap{
+  padding-bottom: 55px;
+  li{
+    padding: 0 0 0 10px;
+    margin-bottom: 10px;
+    >a{
+      width: 100%;
+      display: flex;
+    }
+    .avatar{
+      width: 40px;
+      margin-right: 15px;
+      padding-top: 10px;
+      img{
+        border-radius: 100%;
+      }
+    }
+    .cmtInfo{
+      flex: 1;
+      border-top: 1px solid #eee;
+      padding: 10px 10px 0 0;
+      p{
+        line-height: 1;
+      }
+      .first{
+        .flexDiv;
+        span{
+          color: @minorTextColor;
+          i{
+            font-size: 18px;
+            margin-right: 5px;
+          }
+        }
+        a{
+          max-width: 115px;
+          color: @themeColor;
+        }
+      }
+      .time{
+        font-size: 12px;
+        color: @minorTextColor;
+        span{
+          margin-right: 15px;
+        }
+        a{
+          color: @themeColor;
+          i{
+            font-size: 12px;
+          }
+        }
+      }
+      .detail{
+        padding: 0 0 10px;
+        color: #333;
+      }
+    }
+  }
+}
+.noWrap{
+  margin-top: -20px;
+  background-color: white;
+}
+.emojiText{
+  font-size: 30px;
+  text-align: center;
+  margin: 20px 0!important;
+  color: @minorTextColor;
+}
+.noState{
+  text-align: center;
+  color: @minorTextColor;
+  padding-bottom: 20px;
+  span{
+    color: @themeColor;
+  }
+}
+.floatNav{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding: 10px;
+  background-color: @comColor !important;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+  .cmtBox{
+    width: 100%;
+    height: 35px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: @minorTextColor;
+    i{
+      margin-right: 15px;
+    }
+  }
+}
+.noMore{
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+}

@@ -1,0 +1,22 @@
+<volist name="data" id="vo">
+    <li class="one info">
+        <a external href="{:U('Ucenter/Index/mine',array('uid'=>$vo['user']['uid']))}">
+            <div class="avatar">
+                <img src="{$vo.user.avatar512}" alt="">
+            </div>
+        </a>
+        <div class="name">
+            <a external href="{:U('Ucenter/Index/mine',array('uid'=>$vo['user']['uid']))}">{$vo.user.nickname}</a>
+            <p class="location textMore">{$vo.user.signature|default="这个人很懒，神马都没写~"}</p>
+        </div>
+        <if condition="$vo['user']['is_follow'] eq 1">
+            <a data-role="follow" data-value="unfollow" data-uid="{$vo.user.uid}" class="follow do-active">已关注</a>
+            <else/>
+            <if condition="$vo['user']['uid'] eq is_login()">
+
+                <else/>
+                <a data-role="follow" data-value="follow" data-uid="{$vo.user.uid}" class="follow do-active">关注</a>
+            </if>
+        </if>
+    </li>
+</volist>

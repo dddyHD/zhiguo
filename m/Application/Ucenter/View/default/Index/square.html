@@ -1,0 +1,57 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/square.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current condition">
+            <header class="bar bar-nav comHead">
+                <a href="javascript:" class="title">发现</a>
+            </header>
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="content">
+                <div class="content-block noEdge noShadow">
+                    <!--轮播图，后台设置-->
+                    <div class="swiper-container fmSlide" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="2000">
+                        <div class="swiper-wrapper">
+                            <if condition="$count eq 0">
+                                <div class="swiper-slide"><img style="margin: 0 auto" src="__PUBLIC__/images/nobanner.png" alt=""></div>
+                                <else />
+                                <volist name="advertisement" id="vo">
+                                    <div class="swiper-slide"><a href="{$vo.link}"><img style="margin: 0 auto" src="{$vo.img}" alt=""></a></div>
+                                </volist>
+                            </if>
+                        </div>
+                    </div>
+                    <!--导航-->
+                    <div class="moreNav">
+                        <a href="{:U('news/index/index')}" class="oneNav">
+                            <div class="round flexWrap" style="background-color: #ff6154"><i class="iconfont icon-zixun"></i></div>
+                            <p>资讯</p>
+                        </a>
+                        <a href="{:U('forum/index/index')}" class="oneNav">
+                            <div class="round flexWrap" style="background-color: #ffad40"><i class="iconfont icon-luntan"></i></div>
+                            <p>论坛</p>
+                        </a>
+                        <a href="{:U('question/index/index')}" class="oneNav">
+                            <div class="round flexWrap" style="background-color: #31dfa0"><i class="iconfont icon-wenda"></i></div>
+                            <p>问答</p>
+                        </a>
+                        <a href="{:U('Mall/index/index')}" class="oneNav">
+                            <div class="round flexWrap" style="background-color: #6cb4fe"><i class="iconfont icon-cart"></i></div>
+                            <p>商城</p>
+                        </a>
+                    </div>
+                    <!--名人堂-->
+                    <div class="famous">
+
+                    </div>
+                    <!--每日精选-->
+                    <div class="bestDay">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

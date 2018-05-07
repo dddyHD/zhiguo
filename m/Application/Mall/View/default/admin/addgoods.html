@@ -1,0 +1,40 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>新增商品</h2>
+    </div>
+    <div class="form-group">
+        <label for="cat" class="control-label" style="font-size: 18px;height: 18px;">商品分类:</label>
+        <div><select id="cat" class="form-control" style="width: 200px;">
+            <option>etwetr</option>
+            <option>2433rgf</option>
+            <option>gberfgrew</option>
+        </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="goods_name" class="control-label" style="font-size: 18px;height: 18px;">商品名称:</label>
+        <div><input type="text" id="goods_name" class="form-control" style="width: 200px;">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="goods_num" class="control-label" style="font-size: 18px;height: 18px;">商品编号:</label>
+        <div><input type="text" id="goods_num" class="form-control" style="width: 200px;">
+        </div>
+    </div>
+    <div class="form-group">
+        <label  class="control-label" style="font-size: 18px;height: 18px;margin-bottom: 20px;">商品描述:</label>
+        <div class="form-control">
+            {:W('Common/Ueditor/editor',array('content','content','','800px','200px','','',array('is_load_script'=>0,'zIndex'=>1050)))}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label" style="font-size: 18px;height: 18px;">商品图片:</label>
+        <div>
+            {:W('Common/UploadMultiImage/render',array(array('id'=>'attach_ids','name'=>'attach_ids','value'=>1,'limit'=>9,'isLoadScript'=>1)))}
+        </div>
+    </div>
+    <div class="form-group">
+        开启规格
+    </div>
+</block>

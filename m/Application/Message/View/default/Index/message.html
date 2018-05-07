@@ -1,0 +1,38 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/message.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back" href="{:U('index')}"></a>
+                <a href="javascript:" class="title">{$type_title|default="消息"}</a>
+            </header>
+
+            <div class="content mDetail pull-to-refresh-content infinite-scroll infinite-scroll-bottom" data-ptr-distance="55" data-distance="100">
+                <!-- 默认的下拉刷新层 -->
+                <div class="pull-to-refresh-layer">
+                    <div class="preloader"></div>
+                    <div class="pull-to-refresh-arrow"></div>
+                </div>
+                <div class="content-block noEdge" data-role="message" data-type="{$type}">
+                    <empty name="message">
+                        <div class="noMessage">还没有消息~</div>
+                        <else/>
+                        <include file="_list"/>
+                    </empty>
+                </div>
+                <gt name="first_message_num" value="9">
+                    <!-- 加载提示符 -->
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
+                </gt>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/message.js"></script>
+</block>

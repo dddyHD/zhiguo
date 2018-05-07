@@ -1,0 +1,100 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="page-bar">
+        <link rel="stylesheet" href="./Application/Order/Static/css/daterangepicker.css" />
+        <script src="./Application/Order/Static/js/moment.min.js"></script>
+        <script src="./Application/Order/Static/js/jquery.daterangepicker.js"></script>
+        <ul class="page-breadcrumb">
+            <li>
+                <a href="{:U('Admin/Index/index')}">首页  </a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>商品订单列表</span>
+            </li>
+        </ul>
+        <div class="page-toolbar">
+            <include file="Public/_addTo"/>
+        </div>
+    </div>
+
+    <!-- 标题栏 -->
+    <div class="main-title">
+        <h2>商品订单列表</h2>
+    </div>
+    <div style="display: flex;" class="pull-right">
+    <div>
+        <select id="method" name="method" class="form-control">
+            <option value="0" <if condition="$method eq 0">selected</if> >- 搜索方式 -</option>
+            <option value="1" <if condition="$method eq 1">selected</if> >用户UID</option>
+            <option value="2" <if condition="$method eq 2">selected</if> >订单编号</option>
+        </select>
+    </div>
+
+        <div class="input-group" style="width: 160px;padding: 0 10px;">
+            <input type="text" id="num" name="num" value="{$num}" class="search-input form-control" placeholder="请选择搜索方式">
+        </div>
+
+        <div>
+        <select id="cate" name="cate" class="form-control">
+            <option>- 订单流程 -</option>
+            <option value="1" <if condition="$cate eq 1">selected</if> >交易完成</option>
+            <option value="2" <if condition="$cate eq 2">selected</if> >等待付款</option>
+            <option value="3" <if condition="$cate eq 3">selected</if> >交易关闭</option>
+        </select>
+        </div>
+        <div style="width: 292px;padding:0 30px">
+            <span>金额范围：</span><input type="text" id="min" name="min" value="{$min}" class="form-control" placeholder="最小值" style="width: 70px;display:inline-block"> to <input type="text" id="max" name="max" value="{$max}" placeholder="最大值" class="form-control" style="width: 70px;display:inline-block">
+        </div>
+        <div style="width: 312px;">
+        <span>时间区间：</span><span id="time-inputs"><input type="text" id="start-time" name="start" value="{$sTime}" readonly="readonly" placeholder="起始时间" class="form-control" style="display:inline-block;width: 110px;background-color: #fff"> to <input type="text" id="end-time" name="end" value="{$eTime}" placeholder="结束时间" class="form-control" readonly="readonly" style="display:inline-block;width: 110px;background-color: #fff"></span>
+        </div>
+            <span class="input-group-btn" style="z-index: 0">  <a class="btn btn-default" href="javascript:;" id="search" url="{:U('index')}"><i class="fa fa-search"></i></a></span>
+    </div>
+    <div class="data-table with-padding" style="padding-top: 45px">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th class="row-selected row-selected" style="width: 20px"><input class="check-all" type="checkbox"/>
+                </th>
+                <th class="">订单编号</th>
+                <th class="">下单用户</th>
+                <th class="">商品名称</th>
+                <th class="">商品类型</th>
+                <th class="">交易字段</th>
+                <th class="">交易方式</th>
+                <th class="">交易数额</th>
+                <th class="">是否已付款</th>
+                <th class="">订单流程</th>
+                <th class="">订单状态</th>
+                <th class="">创建时间</th>
+                <th class="">支付时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            <volist name="orders" id="vo">
+                <tr>
+                    <td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}"/></td>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.uid}</td>
+                    <td>{$vo.goods_id}</td>
+                    <td>{$vo.goods_type}</td>
+                    <td>{$vo.field}</td>
+                    <td>{$vo.method}</td>
+                    <td>{$vo.amount}</td>
+                    <td>{$vo.is_pay}</td>
+                    <td>{$vo.process}</td>
+                    <td>{$vo.status}</td>
+                    <td>{$vo.create_time}</td>
+                    <td>{$vo.pay_time}</td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+        <span>共{$count}条</span>
+        <div class="pull-right" style="width:90px;height: 300px;">{:getPagination($count,20)}</div>
+    </div>
+</block>
+<block name="script">
+    <script src="./Application/Order/Static/js/order.js"></script>
+</block>

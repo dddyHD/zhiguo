@@ -1,0 +1,214 @@
+@import "../../../../Public/css/core";
+.dHead{
+  height: 40px;
+  background-color: @themeColor;
+  .dTabs{
+    width: 70%;
+    margin: 0 auto;
+    background-color: transparent;
+    border: none;
+    .button.active {
+      z-index: 100;
+      color: @comColor;
+      border-color: transparent;
+    }
+  }
+}
+.dContent{
+  .dInfo{
+    padding: 10px;
+    .dName{
+      color: #000;
+      font-weight: 600;
+    }
+    .dPrice{
+      color: @themeColor;
+      font-weight: 600;
+      font-size: 18px;
+      margin-top: 10px!important;
+    }
+    p{
+      width:295px;
+    }
+    span{
+      float: right;
+      position: relative;
+      top:-25px;
+    }
+    a{
+      float: right;
+      position: relative;
+      top:-25px;
+    }
+  }
+}
+.dIntro{
+  .dTitle{
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    color: @themeColor;
+    i{
+      margin-right: 8px;
+    }
+  }
+  .dMore{
+    padding: 10px;
+    p{
+      img{
+        text-align: center;
+      }
+    }
+  }
+  .essay{
+    padding: 25px 25px 40px 25px;
+    line-height: 23px;
+    font-size: 15px;
+    p{
+      img{
+        text-align: center;
+      }
+    }
+  }
+}
+.dPre{
+  height: 240px;
+}
+.tip{
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+
+.dBottom{
+  height: 50px;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  box-shadow: 0 0 5px rgba(0,0,0,.1);
+  align-items: center;
+  background-color: @comColor;
+  .dLeft{
+    display:flex;
+    height: 100%;
+    justify-content: flex-start;
+  }
+  .dCollect{
+    height: 100%;
+    border-right: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 20px;
+  }
+  .dService{
+    height: 100%;
+    border-right: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 20px;
+  }
+
+  .goBuy{
+    display: inline-block;
+    height: 100%;
+    padding: 0 20px;
+    background-color: @themeColor;
+    color: @comColor;
+    line-height: 49px;
+  }
+}
+//评论样式
+.cmtHead{
+  color: @themeColor;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  i{
+    margin-right: 8px;
+  }
+}
+.judge{
+  padding: 10px;
+  .jCover{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    overflow: hidden;
+  }
+  .jName{
+    max-width: 205px;
+  }
+  .jContent{
+    padding: 10px 0 0;
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+  }
+}
+.transit{
+  background-color: #f2f2f2;
+  height: 5px;
+  width: 100%;
+}
+
+.sendWrap{
+  top: initial;
+  bottom: 0;
+  height: auto;
+  background-color: #fcfcfc;
+  .sendArea{
+    width: 100%;
+    border-radius: 5px;
+    border-color: #eee;
+    resize: none;
+    padding: .5rem;
+  }
+  .commentOp{
+    margin-bottom: .5rem;
+    text-align: right;
+    .iconfont{
+      font-size: 24px;
+    }
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 374px){
+  .jName{
+    max-width: 170px!important;
+  }
+}
+.swiper-slide img{
+   width: 400px;
+   height: 200px;
+}
+.body{
+  overflow: scroll;
+}
+.bar {
+    .pull-left {
+     width: 150px;
+      text-align:left;
+    }
+}
+.modal-inner {
+  background-color: #ffffff;
+  border-radius: 5px 5px 0 0;
+  padding: 0.2rem 0.6rem;
+  .modal-text {
+    color: #5d5d5d;
+  }
+  .modal-text-input {
+    border-radius: 5px;
+  }
+}
+
+.modal-button:last-child {
+  border-radius: 0 0 5px 0;
+  color: #ec725d;
+  font-size: 0.75rem;
+}

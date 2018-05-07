@@ -1,0 +1,163 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/carlist.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title">购物车</a>
+                <div class="edit" >编辑</div>
+                <div class="complete" style="display: none">完成</div>
+            </header>
+            <div class="content me infinite-scroll">
+                <div class="content-block noEdge">
+                    <div class="mallNavWrap">
+                        <div class="content-block noEdge mallContent">
+                            <div class="tabs" data-total="{$totalCount}">
+                                <include file="_carlist"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dBottom">
+               <!-- <div class="dLeft do-collect" data-id="{$good.id}">
+                    <i class="iconfont icon-concerned"
+                    <neq name="is_login" value="0"><eq name="good.is_collect" value="1">style="color:red";</eq></neq>>
+                    </i>
+                    <span>收藏</span>
+                </div>-->
+                <div class='checkbox'>
+                    <input type="checkbox" id="allChoice"/>
+                    <label>全选</label>
+                </div>
+                <div class="total">合计：￥<span id="">0.00</span></div>
+                <div class="settle">
+                    <a href="javascript:" data-role="goBuy" class="dPrice goBuy active">去结算</a>
+                </div>
+                <div class="redact" style="display: none">
+                    <a href="javascript:" data-role="moveCollect" class="dPrice moveCollect" >移入收藏夹</a>
+                    <a href="javascript:" data-role="delete" class="dPrice delete" >删除</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $("[data-role='goBuy']").click(function () {
+            var goodsId=new Array();
+            for(var i=0;i<$(".myCheck").length;i++){
+                goodsId[i]=$('.myCheck').eq(i).attr('data-id');
+            }
+            if(goodsId.length==0){
+                $.toast('没有可以支付的物品');
+                return;
+            }
+            $.post("{:U('Order/index/carOrder')}",{goods_id:goodsId},function (res) {
+                $("[data-role='goBuy']").unbind();
+                if(res.status==1){
+                    $.toast(res.info);
+                    location.href=res.url;
+                }else {
+                    $.toast(res.info);
+                }
+            })
+        })
+        $("[data-role='moveCollect']").click(function () {
+            var goodsId=new Array();
+            for(var i=0;i<$(".myCheck").length;i++){
+                goodsId[i]=$('.myCheck').eq(i).attr('data-id');
+            }
+            $.post("{:U('Mall/index/moveCollect')}",{goods_id:goodsId},function (res) {
+                $("[data-role='moveCollect']").unbind();
+                if(res.status==1){
+                    $.toast(res.info);
+                }else {
+                    $.toast(res.info);
+                }
+            })
+        })
+        $("[data-role='delete']").click(function () {
+            var goodsId=new Array();
+            for(var i=0;i<$(".myCheck").length;i++){
+                goodsId[i]=$('.myCheck').eq(i).attr('data-id');
+            }
+            if(goodsId.length==0){
+                $.toast('没有可以删除的物品');
+                return;
+            }
+            $.post("{:U('Mall/index/deleteGoods')}",{goods_id:goodsId},function (res) {
+                $("[data-role='delete']").unbind();
+                if(res.status==1){
+                    $.toast(res.info);
+                    location.href=U('Mall/index/carList');
+                }else {
+                    $.toast(res.info);
+                }
+            })
+        })
+    </script>
+    <script>
+        $('.edit').click(function () {
+            $('.complete').css('display','block');
+            $(".redact").css('display','block');
+            $(this).css('display','none');
+            $('.total').css('display','none');
+            $("[data-role='goBuy']").css('display','none');
+        })
+        $('.complete').click(function () {
+            $('.edit').css('display','block');
+            $('.total').css('display','block');
+            $("[data-role='goBuy']").css('display','block');
+            $(this).css('display','none');
+            $(".redact").css('display','none');
+        })
+    </script>
+    <script>
+        $("#allChoice").prop("checked",false);
+        $('.mallList input').click(function () {
+            if($(this).is(":checked")){
+                $(this).addClass("myCheck");
+                var price=$(this).attr('data-price');
+                var count=$('.tabs').attr('data-total');
+                var total=parseFloat($(".total span").text())+parseFloat(price);
+                $(".total span").text(total.toFixed(2));
+                if($(".myCheck").length==count){
+                    $("#allChoice").prop("checked",true);
+                }
+            }
+            else{
+                $(this).removeClass("myCheck");
+                var price=$(this).attr('data-price');
+                var count=$('.tabs').attr('data-total');
+                var total=parseFloat($(".total span").text())-parseFloat(price);
+                $(".total span").text(total.toFixed(2));
+                if($(".myCheck").length!=count){
+                    $("#allChoice").prop("checked",false);
+                }
+            }
+        });
+        //全选/取消全选
+        $("#allChoice").click(function () {
+            if($("#allChoice").is(":checked")){
+                //全选
+                var total=0;
+                $('input[name="check"]').prop("checked",true).addClass("myCheck");
+                var follow = new Array();
+                for(var i=0;i<$(".myCheck").length;i++){
+                    follow[i]=$(".myCheck").eq(i).attr("data-price");
+                    total=parseFloat(total)+parseFloat(follow[i]);
+                    $(".total span").text(total.toFixed(2));
+                }
+            }
+            else{
+                $(".total span").text('0.00');
+                $("input[name='check']").prop("checked",false).removeClass("myCheck");//取消全选
+            }
+        });
+    </script>
+</block>

@@ -1,0 +1,44 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_76khpehk4s0885mi.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current pageSearch">
+            <header class="bar bar-nav comHead">
+                <div class="searchbar">
+                    <div class="search-input">
+                        <label class="icon icon-search" for="search"></label>
+                        <input type="search" id='search' placeholder='{$result[0][title]}'/>
+                    </div>
+                </div>
+                <a href="javascript:history.go(-1);">取消</a>
+            </header>
+            <div class="content">
+                <div class="content-block noEdge">
+                    <div class="hot">
+                        <div class="hotTop">
+                            <span data-role="hotSearch">热门搜索</span>
+                            <span data-role="change" ><i  class="iconfont icon-shuaxin"></i>换一批</span>
+                        </div>
+                        <div class="hotTag" data-role="hotChange">
+                            <volist name="result" id="val">
+                                <a  href="{:U('mall/index/detail',array('id'=>$val['id']))}"> <span>{$val.name}</span></a>
+                            </volist>
+                        </div>
+                        <ul class="listWrap" data-role="myList" >
+                            <include file="_list"/>
+                        </ul>
+                    </div>
+                    <ul class="history" id="myHistory">
+                        <include file="_history"/>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/search.js"></script>
+</block>

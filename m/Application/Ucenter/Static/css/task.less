@@ -1,0 +1,160 @@
+@import "../../../../Public/css/core";
+.taskTop{
+  background-color: @themeColor;
+  height: 90px;
+  zoom: 1;
+  display: flex;
+  position: relative;
+  .taskLine{
+    width: 50%;
+    border: 1px solid #00a65a;
+    height: 0;
+    position: absolute;
+    left: 0;
+    top:50%;
+  }
+  .another{
+    right: 0;
+    left: inherit;
+    border-color: rgba(0,0,0,.5);
+  }
+  .taskOne{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    .taskCircle{
+      .osCircle(40px);
+      color: @comColor;
+      font-size: 12px;
+    }
+    .bfCircle{
+      background-color: #00a65a;
+    }
+    .afCircle{
+      background-color: @themeColor;
+      .taskMask{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,.5);
+      }
+    }
+    .ctCircle{
+      .osCircle(55px);
+      border: 2px solid #00a65a;
+    }
+    .ctLevel{
+      position: absolute;
+      bottom: -10px;
+      color: @comColor;
+      font-size: 14px;
+    }
+  }
+}
+//进度条样式
+.prpWrap{
+  background-color: @themeColor;
+  padding: 25px 10px 10px;
+  .taskMine{
+    color: @comColor;
+    padding-bottom: 5px;
+  }
+  .taskNum{
+    color: rgba(255,255,255,.8);
+    text-align: right;
+  }
+}
+.progress-bar {
+  float: left;
+  width: 0;
+  height: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  text-align: center;
+  background-color: #00a65a;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+  -webkit-transition: width .6s ease;
+  -o-transition: width .6s ease;
+  transition: width .6s ease;
+}
+.progress{
+  height: 20px;
+  background: #262626;
+  opacity: .8;
+  padding: 5px;
+  overflow: visible;
+  border-radius: 20px;
+}
+.progress .progress-bar{
+  border-radius: 20px;
+  position: relative;
+  animation: animate-positive 2s;
+}
+.progress .progress-value{
+  display: block;
+  padding: 1px 7px;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 4px;
+  background: #191919;
+  border: 1px solid #000;
+  position: absolute;
+  top: -35px;
+  right: -10px;
+  opacity: .8;
+}
+.progress .progress-value:after{
+  content: "";
+  border-top: 10px solid #191919;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  bottom: -6px;
+  left: 26%;
+}
+.progress-bar.active{
+  animation: reverse progress-bar-stripes 0.40s linear infinite, animate-positive 2s;
+}
+@-webkit-keyframes animate-positive{
+  0% { width: 0; }
+}
+@keyframes animate-positive{
+  0% { width: 0; }
+}
+//任务列表
+.taskList{
+  padding: 10px;
+  li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f2f2f2;
+    padding: 5px 0;
+    color: #333;
+    &:last-child{
+      border: none;
+    }
+    i{
+      margin-right: 5px;
+    }
+    .center{
+      i{
+        color: #00a0e9;
+      }
+    }
+    .right{
+      color: #00a65a;
+    }
+  }
+}
+//没有任务的空白状态
+.noTask{
+  text-align: center;
+  padding-top: 30px;
+  .iconfont{
+    font-size: 50px;
+  }
+}

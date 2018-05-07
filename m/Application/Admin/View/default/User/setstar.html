@@ -1,0 +1,21 @@
+<style>
+        .div-set{
+                margin-bottom: 20px;
+        }
+</style>
+<div style="text-align: center">
+<form method="post" class="star-frm">
+        <input type="hidden" name="star" value="1">
+<div class="div-set">当前选择用户：√{$user.0.space_link}&nbsp;&nbsp;<input type="hidden" name="uid" value="{$user.0.uid}"/></div>
+<div class="div-set">标题：<input type="text" name="starTitle"></div>
+<div class="div-set">内容：<textarea name="starText"></textarea></div>
+<div class="div-set"><input type="button" class="btn submit" url="__SELF__" value="提交" data-role="star-submit"></div>
+</form>
+</div>
+<script>
+        $('[data-role="star-submit"]').click(function () {
+              $.post($(this).attr('url'),$('.star-frm').serialize(),function(msg){
+                        handleAjax(msg);
+                });
+        })
+</script>

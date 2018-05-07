@@ -1,0 +1,50 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/favorite.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_76khpehk4s0885mi.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <div class="content infinite-scroll infinite-scroll-bottom"  data-distance="100">
+                <div class="content-block noEdge noShadow">
+                    <div class="proHead">
+                        <a class="iconfont icon-xiangzuojiantou pull-left button button-link back" href="javascript:history.go(-1);">收藏夹</a>
+                        <!--<a class="iconfont icon-weibiaoti3" data-role="show-search" style="font-size: 20px"></a>-->
+                    </div>
+                    <div class="bar bar-header-secondary fSearch" style="">
+                        <div class="searchbar">
+                            <a class="searchbar-cancel">取消</a>
+                            <div class="search-input">
+                                <label class="icon icon-search" for="search"></label>
+                                <input type="search" id="search" placeholder="搜索 ...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons-tab">
+                        <a href="#tab1" class="tab-link active button" data-role="Mall" data-total="{$collection}">商品</a>
+                    </div>
+                    <div class="mt" data-distance="100" data-ptr-distance="55">
+                            <ul id="tab" class="tab active list" data-title="common">
+
+                            </ul>
+                            <div class="infinite-scroll-preloader">
+                                <div class="preloader"></div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__PUBLIC__/js/refreshData.js"></script>
+    <script src="__JS__/favorite.js"></script>
+    <script>
+        $(function(){
+            $("[data-role='show-search']").click(function () {
+                $('.fSearch').slideToggle();
+            });
+        })
+    </script>
+</block>

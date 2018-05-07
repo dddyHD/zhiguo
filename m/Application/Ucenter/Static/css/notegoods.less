@@ -1,0 +1,44 @@
+//笔记列表的样式
+.flexLeft{
+  margin-top:5px;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  background-color: #fff;
+  .leftDiv{
+    width: 80px;
+    height: 80px;
+  }
+  .rightDiv{
+    width: 240px;
+    text-align: left;
+    align-items: flex-start!important;
+    overflow: hidden;
+    .sIntro{
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .prompt{
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      span{
+        display: block;
+      }
+    }
+  }
+}
+//商品内的笔记
+.note_message{
+  padding: 10px;
+  background-color: #fff;
+  border-top:1px solid #e5e5e5;
+  .position{
+    width: 100%;
+    margin:10px 0;
+    text-align: end;
+  }
+}

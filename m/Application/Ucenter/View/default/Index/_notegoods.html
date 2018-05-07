@@ -1,0 +1,16 @@
+<volist name="goods" id="list">
+    <a href="{:U('notelist',array('id'=>$list['id']))}">
+        <div class="flexDiv mall  mallList">
+            <div class="flexLeft">
+                <div class="leftDiv mCover">
+                    <img src="{$list.img}" style="width: 60px;height: 80px" alt="商城封面">
+                </div>
+                <div class="rightDiv mInfo">
+                    <p class="mName textMore">{$list.name}</p>
+                    <div class="sIntro">{$list.introduce|text}</div>
+                    <div class='prompt'><span>笔记数:{$list.count}</span><span>{$list.time_age}</span></div>
+                </div>
+            </div>
+        </div>
+    </a>
+</volist>

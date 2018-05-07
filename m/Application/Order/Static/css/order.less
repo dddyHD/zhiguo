@@ -1,0 +1,85 @@
+@import "../../../../Public/css/core";
+.dBottom{
+  height: 45px;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  flex-direction:row-reverse;
+  border-top: 1px solid #eee;
+  box-shadow: 0 0 5px rgba(0,0,0,.1);
+  align-items: center;
+  background-color: @comColor;
+  .goBuy{
+    display: inline-block;
+    height: 100%;
+    padding: 0 30px;
+    background-color: @themeColor;
+    color: @comColor;
+    line-height: 45px;
+  }
+}
+.pay-block{
+  padding: .5rem;
+  margin-bottom:50px;
+  .pay-title{
+    display: flex;
+    justify-content:space-between;
+    padding: .5rem;
+    .pay-method{
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  }
+  .pay-card{
+    padding: 0 .5rem;
+    border-radius: .1rem;
+    //box-shadow: 0 0.05rem 0.1rem rgba(0,0,0,.3);
+    margin-bottom: .3rem;
+    .pay-item{
+      padding: 0.1rem 0;
+      height: 50px;
+    }
+  }
+}
+.swiper-slide{
+  img{
+    height: 200px;
+    width: 100%;
+  }
+}
+.goBuyed{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 0 30px;
+  color: #ec725d;
+  line-height: 45px;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 16px;
+}
+//订单新样式
+.goods_message{
+  margin: 70px 20px 0 20px;
+  display: flex;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  .name_price{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .item-after{
+     font-size: 15px;
+   }
+  }
+}
+.station{
+  border: 1px solid #ececec;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background-color: #fff;
+}

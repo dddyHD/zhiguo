@@ -1,0 +1,53 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_76khpehk4s0885mi.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_jwom8v8ln27kqpvi.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_mm9bd5k1pm59izfr.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <header class="bar bar-nav comHead">
+                <a class="iconfont icon-xiangzuojiantou pull-left button button-link back"
+                   href="javascript:history.go(-1);"></a>
+                <div class="flexDiv mall">
+                    <div class="flexLeft">
+                        <a href="{:U('Mall/index/search')}" class="listsSearch"><i class="iconfont icon-fangdajing"></i>搜索</a>
+                    </div>
+                    <a href="{:U('Mall/index/carlist')}" class="cat" style="position: absolute;right: 26px;top: 0; color: #fff">
+                        <i class="iconfont icon-gouwuche" style="font-size: 18px"></i>
+                        <span data-role="carCount">{$carCount}</span>
+                    </a>
+                </div>
+            </header>
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="content me infinite-scroll">
+                <div class="sort">
+                    <span class="new h_active" data-role="new" data-total="{$totalCount}" data-type="{$type}">最新</span>
+                    <span class="price" data-role="price" data-total="{$totalCount}" title="1">价格<i class="iconfont icon-xia"></i></span>
+                    <span class="sales" data-role="sales" data-total="{$totalCount}" >销量<i class="iconfont icon-xia"></i></span>
+                </div>
+                <div class="content-block noEdge">
+                    <div class="mallNavWrap">
+                        <div class="content-block noEdge mallContent">
+                            <div class="tabs">
+                                <div id="tab2" class="tab active">
+                                    <if condition="$totalCount eq 0">
+                                        <div class="noGoods">还没有商品~</div>
+                                    </if>
+                                </div>
+                                <div class="infinite-scroll-preloader">
+                                    <div class="preloader"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/sort.js"></script>
+</block>

@@ -1,0 +1,112 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/index.css"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_76khpehk4s0885mi.css"/>
+</block>
+<block name="body">
+    <div class="page-group" >
+        <div class="page page-current" style="background-color: #fff">
+            <include file="./Application/Common/View/default/Public/footer.html"/>
+            <div class="content me">
+                <div class="content-block noEdge">
+                    <div class="flexDiv mall">
+                        <div class="flexLeft">
+                            <div class="rightDiv mInfo">
+                                <p class="mName textMore">{$mall_name}</p>
+                            </div>
+                            <a href="{:U('Mall/index/search')}" class="search"><i class="iconfont icon-weibiaoti3"></i>搜索</a>
+                        </div>
+                        <!--<div class="flexRight"><a class="mButton" href="javascript:">联系客服</a></div>-->
+                    </div>
+
+                    <div class="mallNavWrap">
+                        <div class="buttons-tab mallNav">
+                            <a href="#tab1" data-role="goods" class="tab-link active button"><span class="iconfont icon-shangpin"></span><span>首页</span></a>
+                            <a href="#tab2" data-role="cate_goods" class="tab-link button"><span class="iconfont icon-tubiao3"></span><span>分类</span></a>
+                            <a href="#tab3" data-role="goods" class="tab-link button"><span class="iconfont icon-rexiao"></span><span>热销</span></a>
+                            <a href="#tab4" data-role="goods" class="tab-link button"><span class="iconfont icon-xinpin-sm"></span><span>上新</span></a>
+                            <!--<a href="#tab5" class="tab-link button"><span class="iconfont icon-dongtai"></span><span>店铺动态</span></a>-->
+                        </div>
+                        <div class="content-block noEdge mallContent">
+                            <div class="shuffling">
+                                <!--<img src="{$mall_pictures|default='__PUBLIC_IMAGE__/wsq.png'}" alt="商城封面">-->
+                                {:W('Common/Adv/render',array(array('name'=>'mall_adv','title'=>'智果商城','type'=>2,'width'=>'370px','height'=>'200px',theme=>'all')))}
+                            </div>
+                            <div class="tabs">
+                                <ul class="aboveBox">
+                                    <a href="{:U('Mall/Index/goodslist',array('type'=>0))}">全部</a>
+                                    <volist name="cate" id="list">
+                                        <li><a href="{:U('Mall/Index/goodslist',array('type'=>$list['id']))}">{$list.title}</a>
+                                        </li>
+                                    </volist>
+                                </ul>
+                                <div id="tab1" class="tab active">
+                                    <div class="content-block noEdge" data-role="all_goods">
+                                        <empty name="goods">
+                                            <div class="noGoods">还没有商品~</div>
+                                            <else/>
+                                            <include file="_list"/>
+                                        </empty>
+                                    </div>
+                                </div>
+                                <div id="tab2" class="tab">
+                                    <div class="content-block noEdge" data-role="all_goods">
+                                        <div class="ori" style="display: none">
+                                            <include file="_list"/>
+                                        </div>
+                                        <div class="cate" style="display: block">
+                                            <empty name="cate_goods">
+                                                <div class="noGoods">还没有商品~</div>
+                                                <else/>
+                                                <include file="_catelist"/>
+                                            </empty>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab3" class="tab">
+                                    <div class="content-block noEdge" data-role="all_goods">
+                                        <empty name="hot_goods">
+                                            <div class="noGoods">还没有商品~</div>
+                                            <else/>
+                                            <include file="_hotlist"/>
+                                        </empty>
+                                    </div>
+                                </div>
+                                <div id="tab4" class="tab">
+                                    <div class="content-block noEdge" data-role="all_goods">
+                                        <empty name="new_goods">
+                                            <div class="noGoods">还没有商品~</div>
+                                            <else/>
+                                            <include file="_newlist"/>
+                                        </empty>
+                                    </div>
+                                </div>
+                                <div class="copyright">
+                                    <a href="http://zhiguo.opensns.cn">Powered By 智果内容付费系统</a>
+                                </div>
+
+                                <!--<div id="tab5" class="tab">-->
+                                    <!--<div class="content-block">-->
+                                        <!--<p>This is tab 5 content</p>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__JS__/mall.js"></script>
+    <script>
+        if ( {$type} ){
+            $tab = $('.buttons-tab.mallNav a');
+            $tab.removeClass('active');
+            $('.mallContent .tabs .tab').removeClass('active');
+            $tab.eq(1).addClass('active');
+            $('#tab2').addClass('active');
+        }
+    </script>
+</block>

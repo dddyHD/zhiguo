@@ -1,0 +1,167 @@
+<link type="text/css" rel="stylesheet" href="__ZUI__/lib/calendar/zui.calendar.min.css"/>
+<link rel="stylesheet" type="text/css" href="{:getRootUrl()}Addons/CheckIn/Static/css/check.css">
+
+<div class="checkdiv">
+    <div class="row">
+        <div class="col-xs-4 text-center">
+            <php>if(!$check){</php>
+            <a href="javascript:void(0)" data-role="do_checkin" class="btn-sign show-check">{:L('_CHECKIN_')}</a>
+            <php>}else{</php>
+            <a href="javascript:void(0)" class="btn-sign show-check">已签</a>
+            <php>}</php>
+        </div>
+
+        <div class="col-xs-8 time-box">
+            <span>{$day}</span>
+            <span class="pull-right">{$week}</span>
+            <p>
+                <span class="pull-left">累签 <span data-role="total_check">{$user_info.total_check}</span> 天</span>
+                <span class="pull-right">连签 <span data-role="con_check">{$user_info.con_check}</span> 天</span>
+            </p>
+        </div>
+    </div>
+</div>
+<div id="sign-calendar" class="calendar sign-calendar"></div>
+
+<script type="text/javascript" src="__ZUI__/lib/calendar/zui.calendar.js"></script>
+<script>
+    var sign_card_count = "{$sign_card_count}";
+    var last_day_without_checkin = "{$last_day}";
+    var tcenter_is_installed = "{$tcenter_is_installed}";
+    var popover_list = [];
+    $(function () {
+        do_checkin();
+        check_in_calender();
+    })
+    var do_checkin = function () {
+        $('[data-role="do_checkin"]').unbind();
+        $('[data-role="do_checkin"]').click(function () {
+            var $this = $(this);
+            $.post("{:addons_url('CheckIn://CheckIn/doCheckIn')}", {}, function (res) {
+                if (res.status) {
+                    $this.replaceWith('<a href="javascript:void(0)" class="btn-sign show-check">已签</a>');
+                    $('#sign-calendar .month-days .week-days .cell-day.current').addClass('signed');
+                    $('[data-role=total_check]').text(res.total_check);
+                    $('[data-role=con_check]').text(res.con_check);
+                    toast.success(res.info);
+                } else {
+                    handleAjax(res);
+                }
+            });
+        })
+    }
+    var showLast = {
+        status: 0,
+        showLast: function () {
+            if (this.status == 1) {
+                var a = $('.cell-day').not('.signed,.remedy-signed,.future,.current').last();
+                a.addClass('last-no-check');
+                this.status = 0;
+            }
+        }
+    };
+    var check_in_calender = function () {
+        $('#sign-calendar').calendar({
+            display: function (event) {
+                remove_popover(0);
+                popover_list = [];
+                if ($('#sign-calendar .goto-btn').length <= 0) {
+                    $('#sign-calendar').append('<div class="goto-btn pull-right" style="margin-top:10px"><a data-role="goto-last" class="btn">定位到上一个未签到日</a></div>')
+                    $('[data-role="goto-last"]').click(function () {
+                        var calendar = $('#sign-calendar').data('zui.calendar');
+                        showLast.status = 1;
+                        calendar.display('month', last_day_without_checkin);
+                    })
+                }
+                $('.last-no-check').removeClass('last-no-check');
+
+                $('#sign-calendar .month-days .cell-day.signed').removeClass('signed');
+                $('#sign-calendar .month-days .cell-day.remedy-signed').removeClass('remedy-signed');
+                $.post("{:addons_url('CheckIn://CheckIn/signList')}", {show_month: parseInt(Date.parse(event.date)) / 1000}, function (list) {
+                    if (list) {
+                        for (var i in list) {
+                            var _class = list[i].is_remedy == '1' ? 'remedy-signed' : 'signed';
+                            $('#sign-calendar .month-days .cell-day').eq(list[i].key).addClass(_class);
+                        }
+                    }
+                    showLast.showLast()
+                });
+            }, clickCell: function (event) {
+                var $this = $(event.element);
+                if ($this.hasClass('signed') || $this.hasClass('remedy-signed')) {
+                    return false;
+                }
+                var time = event.date.getTime();
+                if (time >= new Date(new Date().toLocaleDateString()).getTime()) {
+                    return false;
+                }
+
+                $this.on('shown.bs.popover', function () {
+                    do_sign_remedy($this);
+                });
+
+                remove_popover(time);
+                $this.popover({
+                    title: '补签',
+                    content: '<div class="pull-left" style="padding-bottom: 10px;"><div style="width: 200px;">当前拥有补签卡： <span id="card_count">' + sign_card_count + '</span> ' +
+                    (tcenter_is_installed==1?'<a style="color: #00a0e9" href="' + U('tcenter/task/task') + '" >获取补签卡</a>':'') +
+                    '</br>补签需要 1 张补签卡</div><a class="btn pull-right" data-role="remedy-checkin" href="javascript:" data-date="' + time + '">补签</a></div>',
+                    html: true,
+                    container: 'table',
+                    trigger: 'manual',
+                    placement: 'bottom'
+                });
+                $this.popover('toggle');
+                popover_list.push({key:time,obj:$this});
+            },
+            storage:false  //默认打开今天窗口
+        });
+    };
+
+
+
+    var remove_popover = function (time) {
+        time = time || 0;
+        for(var i in popover_list){
+            if( popover_list[i].key != time){
+                popover_list[i].obj.popover('destroy');
+            }
+        }
+        $('table').find('.popover').remove();
+    }
+
+
+
+    var do_sign_remedy = function (obj) {
+        $('[data-role="remedy-checkin"]').unbind('click');
+        $('[data-role="remedy-checkin"]').click(function () {
+            var $this = $(this);
+            var time = $this.attr('data-date');
+            $.ajax({
+                type: "POST",
+                url: U('tcenter/prop/useSignCard'),
+                data: {time: time},
+                dataType: "json",
+                success: function (res) {
+                    if (res.status) {
+                        obj.addClass('remedy-signed');
+                        obj.removeClass('last-no-check');
+                        obj.popover('destroy');
+                        obj.closest('table').find('.popover').remove();
+                        $('[data-role=total_check]').text(res.total_check);
+                        $('[data-role=con_check]').text(res.con_check);
+                        last_day_without_checkin = res.last;
+                        sign_card_count--;
+                        toast.success(res.info);
+                    } else {
+                        handleAjax(res);
+                    }
+                }, error: function (a) {
+                    //console.log(a);
+                    toast.error('模块未安装~');
+                }
+            });
+        })
+
+    }
+</script>

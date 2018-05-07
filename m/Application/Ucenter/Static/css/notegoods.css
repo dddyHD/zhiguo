@@ -1,0 +1,42 @@
+.flexLeft {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  background-color: #fff;
+}
+.flexLeft .leftDiv {
+  width: 80px;
+  height: 80px;
+}
+.flexLeft .rightDiv {
+  width: 240px;
+  text-align: left;
+  align-items: flex-start !important;
+  overflow: hidden;
+}
+.flexLeft .rightDiv .sIntro {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.flexLeft .rightDiv .prompt {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.flexLeft .rightDiv .prompt span {
+  display: block;
+}
+.note_message {
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #e5e5e5;
+}
+.note_message .position {
+  width: 100%;
+  margin: 10px 0;
+  text-align: end;
+}

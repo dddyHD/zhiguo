@@ -1,0 +1,109 @@
+@import "../../../../Public/css/core";
+.walletHead{
+  background-color: @themeColor;
+  height: 90px;
+  padding: 10px;
+  p{
+    color: @comColor;
+    &:last-child{
+      margin-top: 8px!important;
+    }
+    span{
+      font-size: 30px;
+      margin-left: 5px;
+    }
+  }
+}
+.walletNav{
+  background-color: @comColor;
+  display: flex;
+  padding: 10px 0;
+  .oneNav{
+    flex: 1;
+    .flexCol;
+    &:nth-child(2){
+      border-left: 1px solid #eee;
+      border-right: 1px solid #eee;
+    }
+    i{
+      font-size: 25px;
+    }
+  }
+}
+.walletInfo{
+  padding: 10px 5px;
+  .detail{
+    background-color: @comColor;
+    padding-left:10px;
+    li{
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      &:last-child{
+        border: none;
+      }
+      .one{
+        .flexCol;
+        color: @minorTextColor;
+        font-size: 12px;
+      }
+      .two{
+        .comCircle(40px);
+        background-color: @themeColor;
+        margin: 0 8px;
+        i{
+          color: @comColor;
+          font-size: 20px;
+        }
+      }
+      .three{
+        .flexCol;
+        align-items: flex-start;
+        span{
+          color: #000;
+          &:first-child{
+            font-weight: 600;
+          }
+          &:last-child{
+            color: #666;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
+.part-warp{
+  padding: 1rem;
+  .re-title{
+    font-size: .8rem;
+    font-weight: bold;
+  }
+  .money{
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding:.2rem;
+    margin: .5rem 0.5rem 2rem 0;
+  }
+  .sure{
+    display: block;
+    width: 4rem;
+    height: 2rem;
+    background: #EC725D;
+    text-align: center;
+    line-height: 2rem;
+    border-radius: .2rem;
+    margin: auto;color: #fff;
+  }
+  .item-block{
+    padding-left:.9rem;
+    margin-bottom: .5rem;
+    .item-warp{
+      padding: .5rem 0;
+      border-bottom: 1px solid #e7e7e7;
+    }
+    .pay-item{
+      padding: 0.1rem 0;
+    }
+  }
+}

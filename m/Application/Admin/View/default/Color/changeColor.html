@@ -1,0 +1,64 @@
+<extend name="Public/base"/>
+<block name="body">
+    <link rel="stylesheet" href="__CSS__/color.css">
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <a href="{:U('Admin/Index/index')}">首页  </a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>主题色</span>
+            </li>
+        </ul>
+        <div class="page-toolbar">
+            <include file="Public/_addTo"/>
+        </div>
+    </div>
+
+    <div class="color choosecolor">
+        <span>选择配色方案：</span>
+        <div class="detail">
+            <div class="one active" style="background-color: #1abc9c;" data-color="#1abc9c"></div>
+            <div class="one" style="background-color: #0a8ddf;"  data-color="#0a8ddf"></div>
+            <div class="one" style="background-color: red;"  data-color="#FF0000"></div>
+            <div class="one" style="background-color: #a2c139;"  data-color="#a2c139"></div>
+        </div>
+    </div>
+    <div class="demo color">
+        <span>当前风格示例：</span>
+        <div class="detail on">
+            <div class="pic"><img src="__IMG__/logo.png" alt="示例图片"></div>
+            <div class="pic"><img src="" alt="示例图片"></div>
+            <div class="pic"><img src="" alt="示例图片"></div>
+        </div>
+        <div class="detail">
+            <div class="pic"><img src="__IMG__/login_logo.png" alt="示例图片"></div>
+            <div class="pic"><img src="" alt="示例图片"></div>
+            <div class="pic"><img src="" alt="示例图片"></div>
+        </div>
+        <div class="detail">
+            <div class="pic"><img src="__IMG__/plugin.png" alt="示例图片"></div>
+            <div class="pic"><img src="" alt="示例图片"></div>
+            <div class="pic"><img src="" alt="示例图片"></div>
+        </div>
+    </div>
+    <p><span class="sure" data-role="change">保存</span></p>
+    <script>
+        $(function () {
+            var tab = $('.color .one');
+            var content = $('.demo .detail');
+            tab.click(function() {
+                tab.eq($(this).index()).addClass("active").siblings().removeClass('active');
+                content.eq(tab.index(this)).addClass("on").siblings().removeClass('on');
+            });
+        });
+        $('[data-role="change"]').click(function () {
+//            console.log($('.active'))
+            var color=$('.choosecolor .detail .active ').attr('data-color');
+            $.post(U('Admin/Color/changeColor'),{color:color},function (res) {
+                console.log(res)
+            })
+        })
+    </script>
+</block>

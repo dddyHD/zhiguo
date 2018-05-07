@@ -1,0 +1,29 @@
+@import "../../../../Public/css/core";
+.fmSlide{
+  padding: 0;
+  overflow: hidden;
+}
+.moreNav{
+  background-color: @comColor;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  .oneNav{
+    width: 70px;
+    height: 100px;
+    margin: 10px 5px;
+    text-align: center;
+    p{
+      margin-top: 5px!important;
+    }
+    .round{
+      .osCircle(75px);
+      position: relative;
+      i{
+        font-size: 30px;
+        color: @comColor;
+      }
+    }
+  }
+}

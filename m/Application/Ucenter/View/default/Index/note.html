@@ -1,0 +1,37 @@
+<extend name="Base/common"/>
+<block name="css">
+    <!--<link rel="stylesheet" href="__CSS__/fans.css"/>-->
+    <link rel="stylesheet" href="__CSS__/notegoods.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav comHead">
+                <a external class="iconfont icon-xiangzuojiantou pull-left button button-link" href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title open-about">我的笔记</a>
+            </header>
+            <div class="content pull-to-refresh-content infinite-scroll infinite-scroll-bottom" data-distance="100">
+                <div class="pull-to-refresh-layer">
+                    <div class="preloader"></div>
+                    <div class="pull-to-refresh-arrow"></div>
+                </div>
+                <empty name="note">
+                    <div class="nopeople">加油看书，写感想吧</div>
+                    <else/>
+                    <ul class="list">
+                        <include file="_notegoods"/>
+                    </ul>
+                    <div style="display: none" data-uid="{$uid}" data-role="page_info" data-type="{$type}"  data-value="{$page}"></div>
+                </empty>
+                <gt name="first_num" value="9">
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
+                </gt>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script src="__PUBLIC_JS__/public.js"></script>
+</block>

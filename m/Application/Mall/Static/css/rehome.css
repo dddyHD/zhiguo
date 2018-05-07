@@ -1,0 +1,12 @@
+.reHome {
+  position: fixed;
+  bottom: 104px;
+  right: 10px;
+  height: 22px;
+  padding: 2px;
+  background-color: #AAAAAA;
+  line-height: 20px;
+  color: #fff;
+  opacity: 0.8;
+  border-radius: 2px;
+}

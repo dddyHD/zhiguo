@@ -1,0 +1,144 @@
+<extend name="Base/common"/>
+<block name="css">
+    <link rel="stylesheet" href="__CSS__/rank.css"/>
+</block>
+<block name="body">
+    <div class="page-group">
+        <div class="page page-current">
+            <div class="content me">
+                <div class="content-block noEdge">
+                    <div class="rankTop">
+                        <p class="rankTitle"><a class="iconfont icon-fanhui" href="javascript:history.go(-1);" external></a><span class="rank-name">连签榜</span></p>
+                        <div class="myRank">
+                            <!--左边显示自己的排名-->
+                            <p class="myNum fl rank"><span>第</span>{$rank.con_check_rank|default='???'}</p>
+                            <!--中间是自己的头像-->
+                            <div class="aWrap">
+                               <neq name="rank.con_check_rank"></neq>
+                                <div class="myAvatar">
+                                    <img src="{$user.avatar512}" alt="">
+                                </div>
+                            </div>
+
+                            <!--右边是自己的数据-->
+                            <p class="myNum fr number">{$user.con_check}<span>天</span></p>
+                        </div>
+                        <p class="rankTitle myName textMore">{$user.nickname}</p>
+                    </div>
+                    <div class="rankList">
+                        <div class="buttons-row">
+                            <a href="#tab1" data-role="tab" data-value="con" class="tab-link active button">连签榜</a>
+                            <a href="#tab2" data-role="tab" data-value="total" class="tab-link button">累签榜</a>
+                            <a href="#tab3" data-role="tab" data-value="fans" class="tab-link button">粉丝榜</a>
+                        </div>
+                        <div class="tabs">
+                            <div id="tab1" class="tab active">
+                                <div class="content-block myEdge">
+                                    <ul class="inList">
+                                        <empty name="con">
+                                            <div class="none">榜上无人，快去占坑~</div>
+                                         <else/>
+                                            <foreach name="con" item="vo">
+                                                    <a external href="{:U('Ucenter/Index/mine',array('uid'=>$vo['uid']))}">
+                                                        <li>
+                                                            <div class="left flexWrap">
+                                                                <p>{$key+1}</p>
+                                                                <div><img src="{$vo.user.avatar512}" alt=""></div>
+                                                                <p>{$vo.user.nickname}</p>
+                                                            </div>
+                                                            <p class="right flexWrap">{$vo.con_check}<sub>天</sub></p>
+                                                        </li>
+                                                    </a>
+                                            </foreach>
+                                        </empty>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="tab2" class="tab">
+                                <div class="content-block myEdge">
+                                    <ul class="inList">
+                                        <empty name="total">
+                                            <div class="none">榜上无人，快去占坑~</div>
+                                            <else/>
+                                            <foreach name="total" item="to">
+                                                <a external href="{:U('Ucenter/Index/mine',array('uid'=>$to['uid']))}">
+                                                    <li>
+                                                        <div class="left flexWrap">
+                                                            <p>{$key+1}</p>
+                                                            <div><img src="{$to.user.avatar512}" alt=""></div>
+                                                            <p>{$to.user.nickname}</p>
+                                                        </div>
+                                                        <p class="right flexWrap">{$to.total_check}<sub>天</sub></p>
+                                                    </li>
+                                                </a>
+                                            </foreach>
+                                        </empty>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="tab3" class="tab">
+                                <div class="content-block myEdge">
+                                    <ul class="inList">
+                                        <empty name="fans_list">
+                                            <div class="none">榜上无人，快去占坑~</div>
+                                            <else/>
+                                            <foreach name="fans_list" item="fa">
+                                                    <a external href="{:U('Ucenter/Index/mine',array('uid'=>$fa['uid']))}">
+                                                        <li>
+                                                            <div class="left flexWrap">
+                                                                <p>{$key+1}</p>
+                                                                <div><img src="{$fa.avatar512}" alt=""></div>
+                                                                <p>{$fa.nickname}</p>
+                                                            </div>
+                                                            <p class="right flexWrap">{$fa.fans}<sub>位</sub></p>
+                                                        </li>
+                                                    </a>
+                                        </foreach>
+                                        </empty>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script>
+        $('[data-role="tab"]').click(function () {
+            var $this=$(this);
+            var type=$this.attr('data-value');
+            switch(type){
+                case 'con':
+                    var name='连签榜';
+                    var rank='{$rank.con_check_rank|default="???"}';
+                    var number='{$user.con_check}<span>天</span>';
+                    break;
+                case 'total':
+                    var name='累签榜';
+                    var rank='{$rank.total_check_rank|default="???"}';
+                    var number='{$user.total_check}<span>天</span>';
+                    break;
+                case 'fans':
+                    var name='粉丝榜';
+                    var rank='{$rank.fans_rank|default="???"}';
+                    var number='{$rank.my_fans}<span>位</span>';
+                    break;
+                default:
+                    var name='连签榜';
+                    var rank='{$rank.con_check_rank|default="???"}';
+                    var number='{$user.con_check}<span>天</span>';
+            }
+            if(rank=='???'){
+                $('.hg').hide();
+            }else{
+                $('.hg').show();
+            }
+            $('.rank-name').html(name);
+            $('.rank').html('<span>第</span>'+rank);
+            $('.number').html(number);
+        })
+    </script>
+</block>

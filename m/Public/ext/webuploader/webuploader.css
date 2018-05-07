@@ -1,0 +1,62 @@
+.webuploader-container {
+  position: relative;
+}
+.webuploader-element-invisible {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+.webuploader-pick {
+  width: 100%;
+}
+.webuploader-pick-disable {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.image_uploader {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.image_uploader .img-list {
+  padding: 10px;
+  display: inline-flex;
+}
+.image_uploader .img-list .img {
+  margin-right: 10px;
+  width: 90px;
+  height: 90px;
+  display: inline-flex;
+}
+.image_uploader .img-list .img .del-img-btn {
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 100%;
+  display: block;
+  text-align: center;
+  line-height: 18px;
+  margin-left: -8px;
+  margin-top: -10px;
+  color: #999;
+}
+.image_uploader .img-list .img .del-img-btn i {
+  width: 18px;
+  display: block;
+  height: 18px;
+  line-height: 18px;
+}
+.image_uploader .img-list .add-img-btn {
+  width: 90px;
+  height: 90px;
+  border: 1px solid #ccc;
+  color: #ccc;
+  border-radius: 10px;
+  display: inline-flex;
+}
+.image_uploader .img-list .add-img-btn .iconfont {
+  line-height: 90px;
+  font-size: 35px;
+  width: 100%;
+}

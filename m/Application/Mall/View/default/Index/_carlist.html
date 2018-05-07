@@ -1,0 +1,15 @@
+<volist name="car" id="list">
+    <li class="flexDiv mall  mallList">
+        <input type="checkbox" name="check" data-price="{$list.price}" data-id="{$list.id}">
+        <div class="flexLeft">
+            <div class="leftDiv mCover" style="width: 60px;height: 80px">
+                <img src="{$list.img}" alt="商城封面" style="width: 60px;height: 80px">
+            </div>
+            <a href="" class="rightDiv mInfo">
+                <p class="mName textMore">{$list.name}</p>
+                <div class="sIntro">{$list.introduce|text}</div>
+                <span class="mIntro listPrice">￥{$list.price}</span>
+            </a>
+        </div>
+    </li>
+</volist>

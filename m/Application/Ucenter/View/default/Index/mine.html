@@ -1,0 +1,118 @@
+<extend name="Base/common"/>
+<block name="body">
+
+    <div class="page-group">
+        <div class="page page-current">
+            <link rel="stylesheet" href="__CSS__/index.css"/>
+            <header class="bar bar-nav comHead">
+                <a external class="iconfont icon-xiangzuojiantou pull-left button button-link" href="javascript:history.go(-1);"></a>
+                <a href="javascript:" class="title open-about">个人中心</a>
+            </header>
+            <div class="content" >
+                <div class="content-block noEdge">
+                    <div class="myTop">
+                        <div class="circleWrap">
+                            <div class="myAvatar" data-role="change_avatar" data-uid="{$uid}">
+                                <img src="{$user_info.user.avatar512}" alt="">
+                            </div>
+                            <!--<a href="{:U('Ucenter/Index/fans',array('uid'=>$uid,'type'=>'fans'))}"><div class="circle fr">{$user_info.fans|default=0}<span>粉丝</span></div></a>-->
+                            <!--<a href="{:U('Ucenter/Index/fans',array('uid'=>$uid,'type'=>'follow'))}"><div class="circle fl">{$user_info.user.following|default=0}<span>关注</span></div></a>-->
+                        </div>
+                        <div class="mName">{$user_info.nickname}</div>
+                        <div class="intro textMore">{$user_info.signature|default="这个人很懒，神马都没写~"}</div>
+                    </div>
+
+                    <div class="buttons-tab  mTab fixed-tab" data-offset="44">
+                        <a href="#tab1" class="tab-link active button">主页</a>
+                        <!--<a href="#tab2" class="tab-link button">动态</a>
+                        <a href="#tab3" class="tab-link button">圈子</a>-->
+                    </div>
+
+                    <!--tab content-->
+                    <div class="tabContent">
+                        <div class="content-block noEdge">
+                            <div class="tabs">
+                                <!--tab1  主页-->
+                                <div id="tab1" class="tab active">
+                                    <div class="content-block noEdge">
+                                        <div class="baseBox">
+                                            <div class="item">
+                                                <span class="label textColor textMore">所在地</span>
+                                                <span class="textMore cont">{:strlen($user_info['pos_province'])>1?$user_info['pos_province']:'居无定所 ~(┬＿┬)~'}{:strlen($user_info['pos_city'])>1?$user_info['pos_city']:''}{:strlen($user_info['pos_district'])>1?$user_info['pos_district']:''}</span>
+                                            </div>
+                                            <div class="item">
+                                                <span class="label textColor textMore">生日</span>
+                                                <span class="textMore cont">{$user_info.birthday}</span>
+                                            </div>
+                                            <!--点击进入全部资料页，如果为本人，则可编辑资料-->
+                                            <div class="item textCenter textColor"><a external href="{:U('Ucenter/Index/edit',array('uid'=>$uid))}">更多基本资料</a></div>
+                                        </div>
+                                        <!--好友列表-->
+                                        <!--<div class="baseBox baseList mg20">-->
+                                            <!--<p class="fTitle"><if condition="$uid eq is_login()">我<else/>他</if>的好友</p>-->
+                                            <!--<ul class="list list-moreFriend">-->
+                                                <!--<empty name="friend_list">-->
+                                                    <!--<div class="nofriend">还没有好友~</div>-->
+                                                    <!--<else/>-->
+                                                <!--<include file="_friend"/>-->
+                                                <!--<li class="load-more-li" data-uid="{$uid}" data-type="moreFriend" data-role="loadMore" data-value="{$page}">加载更多</li>-->
+                                                <!--</empty>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    </div>
+                                </div>
+                                <!--tab2  微博-->
+                                <div id="tab2" class="tab">
+                                    <div class="content-block noEdge">
+                                        <empty name="weibo_list">
+                                            <div class="noweibo proWrap">还没有动态~</div>
+                                            <else/>
+                                        <include file="_weibo"/>
+                                        <div class="load-more-div proWrap" data-uid="{$uid}" data-type="moreWeibo" data-role="loadMore" data-value="{$page}">加载更多</div>
+                                        </empty>
+                                    </div>
+                                </div>
+                                <!--tab3  圈子-->
+                                <div id="tab3" class="tab">
+                                    <div class="content-block noEdge">
+                                        <!--我创建的圈子列表-->
+                                        <div class="baseBox baseList circleList">
+                                            <p class="fTitle"><if condition="$uid eq is_login()">我<else/>他</if>创建的
+                                            <ul class="list">
+                                                <empty name="mycrowd_list">
+                                                    <div class="nofriend">还没创建的圈子哦~</div>
+                                                    <else/>
+                                                <include file="_mycrowd"/>
+                                                <li class="load-more-li" data-uid="{$uid}" data-type="moreMyCrowd" data-role="loadMore" data-value="{$page}">加载更多</li>
+                                                </empty>
+                                            </ul>
+                                        </div>
+                                        <!--我创建的圈子列表-->
+                                        <!--我关注的圈子列表-->
+                                        <div class="baseBox baseList mg20 circleList">
+                                            <p class="fTitle"><if condition="$uid eq is_login()">我<else/>他</if>加入的</p>
+                                            <ul class="list">
+                                                <empty name="crowd_list">
+                                                    <div class="nofriend">赶快去找个圈子吧~</div>
+                                                    <else/>
+                                                    <include file="_crowd"/>
+                                                    <li class="load-more-li" data-uid="{$uid}" data-type="moreCrowd" data-role="loadMore" data-value="{$page}">加载更多</li>
+                                                </empty>
+                                            </ul>
+                                        </div>
+                                        <!--我关注的圈子列表-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="script">
+    <script src="__JS__/mine.js"></script>
+    <script src="__PUBLIC_JS__/public.js"></script>
+</block>
